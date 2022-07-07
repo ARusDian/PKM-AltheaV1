@@ -1,7 +1,10 @@
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtWidgets
 
 
 class Ui_MainWindow(object):
+    def __init__(self, data):
+        self.data = data
+
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -54,7 +57,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_MainWindow({})
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())

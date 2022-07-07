@@ -1,31 +1,45 @@
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import Qt
 
 
 class Ui_MainWindow(object):
-    umur = 0
+    data = {
+        "umur": 0,
+        "gender": "",
+        "lingkarLengan": 0,
+        "lingkarKepala": 0,
+        "lingkarPerut": 0,
+        "lingkarPinggul": 0,
+        "tinggiBadan": 0,
+        "tinggiLutut": 0,
+        "setengahDepan": 0,
+        "suhu": 0,
+    }
 
-    def toNext(self):
+    def toNext(self, MainWindow):
         try:
             if self.radioButton_LakiLaki.isChecked():
-                gender = "Laki-Laki"
+                self.data["gender"] = "Laki-Laki"
             elif self.radioButton_Perempuan.isChecked():
-                gender = "Perempuan"
+                self.data["gender"] = "Perempuan"
             else:
                 raise ValueError
         except ValueError:
             print("Gender Unknown")
         else:
-            print(gender)
+            from menu import Ui_MainWindow
+            ui = Ui_MainWindow(self.data)
+            ui.setupUi(MainWindow)
+            MainWindow.show()
 
     def Up(self):
-        self.umur += 1
-        self.label_NilaiUmur.setText(str(self.umur))
+        self.data["umur"] += 1
+        self.label_NilaiUmur.setText(str(self.data["umur"]))
 
     def Down(self):
-        if self.umur > 0:
-            self.umur -= 1
-            self.label_NilaiUmur.setText(str(self.umur))
+        if self.data["umur"] > 0:
+            self.data["umur"] -= 1
+            self.label_NilaiUmur.setText(str(self.data["umur"]))
 
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
@@ -57,7 +71,7 @@ class Ui_MainWindow(object):
         self.pushButton_Next = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Next.setGeometry(QtCore.QRect(320, 230, 111, 21))
         self.pushButton_Next.setText("Selanjutnya")
-        self.pushButton_Next.clicked.connect(self.toNext)
+        self.pushButton_Next.clicked.connect(lambda x: self.toNext(MainWindow))
         MainWindow.setCentralWidget(self.centralwidget)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
