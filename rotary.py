@@ -1,64 +1,60 @@
-# #!/usr/bin/env python
-# #
-# # Raspberry Pi Rotary Encoder Class
-# # $Id: rotary_class.py,v 1.3 2021/04/20 12:23:04 bob Exp $
-# #
-# # Author : Bob Rathbone
-# # Site : http://www.bobrathbone.com
-# #
-# # This class uses standard rotary encoder with push switch
-# #
-# #
-# import RPi.GPIO as GPIO
-#
-#
-# class RotaryEncoder:
-#     CLOCKWISE = 1
-#     ANTICLOCKWISE = 2
-#     BUTTONDOWN = 3
-#     BUTTONUP = 4
-#     rotary_a = 0
-#     rotary_b = 0
-#     rotary_c = 0
-#     last_state = 0
-#     direction = 0
-#
-#     # Initialise rotary encoder object
-#     def __init__(self, pinA, pinB, button, callback):
-#
-#         self.pinA = pinA
-#     self.pinB = pinB
-#     self.button = button
-#     self.callback = callback
-#     GPIO.setmode(GPIO.BCM)
-#     # The following lines enable the internal pull-up resistors
-#     # on version 2 (latest) boards
-#     GPIO.setwarnings(False)
-#     GPIO.setup(self.pinA, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#     GPIO.setup(self.pinB, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#     GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#     # For version 1 (old) boards comment out the above four
-#
-#
-# lines
-# # and un-comment the following 3 lines
-# # GPIO.setup(self.pinA, GPIO.IN)
-# # GPIO.setup(self.pinB, GPIO.IN)
-# # GPIO.setup(self.button, GPIO.IN)
-# # Add event detection to the GPIO inputs
-# GPIO.add_event_detect(self.pinA, GPIO.BOTH,
-#                       callback=self.switch_event)
-# GPIO.add_event_detect(self.pinB, GPIO.BOTH,
-#                       callback=self.switch_event)
-# GPIO.add_event_detect(self.button, GPIO.BOTH,
-#                       callback=self.button_event, bouncetime=200)
-# return
-#
-#
-# # Call back routine called by switch events
-# def switch_event(self, switch):
-#
-#
-#     if GPIO.input(self.pinA):
-#     self.rotary_a = 1
-# else:
+#!/usr/bin/env python2.7
+# script by Alex Eames https://raspi.tv/
+# https://raspi.tv/2013/how-to-use-interrupts-with-python-on-the-raspberry-pi-and-rpi-gpio
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+counter = 0
+temp = 0
+
+
+def pin_handler(pin):
+    global pin5_counter, pin5_time, pin5_prevState
+    global pin12_counter, pin12_time, pin12_prevState
+
+    pin5_state = GPIO.input(5)
+    pin12_state = GPIO.input(12)
+
+    if (pin5_state != pin5_prevState):
+        pin5_prevState = pin5_state
+
+        pin5_time = time.time()
+        pin5_counter += 1
+        print("Pin5 - State:", pin5_state, " Counter: ", pin5_counter)
+
+    if (pin12_state != pin12_prevState):
+        pin12_prevState = pin12_state
+
+        pin12_time = time.time()
+        pin12_counter += 1
+        print("Pin12 - State:", pin12_state, " Counter: ", pin12_counter)
+
+def interrupt_handler(channel):
+    global counter
+    if channel == 17:
+        if GPIO.input(17) == 0:
+            counter =+ 1
+        else:
+            counter =- 1
+    elif channel == 27:
+        if GPIO.input(27) == 0:
+            counter =+ 1
+        else:
+            counter =- 1
+
+
+GPIO.add_event_detect(17, GPIO.RISING, callback=interrupt_handler, bouncetime=200)  # add rising edge detection on a channel
+GPIO.add_event_detect(27, GPIO.RISING, callback=interrupt_handler, bouncetime=200)
+# GPIO 23 set up as input. It is pulled up to stop false signals
+
+while True:
+    if counter != temp:
+        print(counter)
+        temp = counter
+
+
+
+
