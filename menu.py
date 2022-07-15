@@ -13,6 +13,18 @@ class Ui_MainWindow(object):
         self.ui.setupUi(MainWindow)
         MainWindow.show()
 
+    def kalkulasiData(self, MainWindow):
+        from kalkulasi import Ui_MainWindow
+        self.ui = Ui_MainWindow(self.data)
+        self.ui.setupUi(MainWindow)
+        MainWindow.show()
+
+    def kembali(self, MainWindow):
+        from awal import Ui_MainWindow
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -90,12 +102,14 @@ class Ui_MainWindow(object):
         self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Simpan.setGeometry(QtCore.QRect(330, 285, 111, 25))
         self.pushButton_Simpan.setText("Simpan dan Kirim")
+        self.pushButton_Simpan.clicked.connect(lambda: self.kalkulasiData(MainWindow))
         self.pushButton_Reset = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Reset.setGeometry(QtCore.QRect(210, 285, 111, 25))
         self.pushButton_Reset.setText("Reset")
         self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Kembali.setGeometry(QtCore.QRect(90, 285, 111, 25))
         self.pushButton_Kembali.setText("Kembali")
+        self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
         MainWindow.setCentralWidget(self.centralwidget)
 
 
