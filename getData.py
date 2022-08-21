@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         print(f"pos={self.pos}")
 
     def simpan(self):
-        # self.data[self.currentData] = int(self.lineEdit_data.text())
+        self.data[self.currentData] = int(self.lineEdit_data.text())
         # self.label_currentValue.setText(self.lineEdit_data.text())
         if self.currentData != "suhu":
             print("Suhu")
