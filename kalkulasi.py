@@ -1,10 +1,4 @@
-import string
-
-from PyQt6 import QtCore, QtWidgets
-import json
-import random
-
-from paho.mqtt import client as mqtt_client
+from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_MainWindow(object):

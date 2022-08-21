@@ -1,7 +1,7 @@
 import json
 import string
 
-from PyQt6 import QtCore, QtWidgets, QtGui
+from PyQt5 import QtCore, QtWidgets, QtGui
 from PIL.ImageQt import ImageQt
 import random
 import qrcode
