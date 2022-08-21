@@ -1,20 +1,39 @@
 from PyQt6 import QtCore, QtWidgets
+from SensorModules import RotaryEncoder
+
+import pigpio
 
 
 class Ui_MainWindow(object):
     currentData = ""
     data = {}
+    pos = 2.5000
 
     def __init__(self, data, currentData):
         self.data = data
         self.currentData = currentData
+        self.pi = pigpio.pi()
+        self.decoder = RotaryEncoder.decoder(self.pi, 6, 13, self.callback)
+
+    def callback(self,way):
+        self.pos += way
+        # cm = pos + 3,0
+        self.data[self.currentData] = self.pos
+        self.label_currentValue.setText(str(self.pos))
+        print(f"pos={self.pos}")
 
     def simpan(self):
-        self.data[self.currentData] = int(self.lineEdit_data.text())
-        self.label_currentValue.setText(self.lineEdit_data.text())
+        # self.data[self.currentData] = int(self.lineEdit_data.text())
+        # self.label_currentValue.setText(self.lineEdit_data.text())
+        if self.currentData != "suhu":
+            print("Suhu")
+        else:
+            print("Not Suhu")
 
     def kembali(self, MainWindow):
         from menu import Ui_MainWindow
+        self.decoder.cancel()
+        self.pi.stop()
         ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
         MainWindow.show()
