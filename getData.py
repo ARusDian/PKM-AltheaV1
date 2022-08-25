@@ -1,4 +1,6 @@
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QPixmap
+
 from SensorModules import RotaryEncoder
 
 import pigpio
@@ -41,6 +43,11 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+
+        self.bg = QtWidgets.QLabel(self.centralwidget)
+        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setPixmap(QPixmap("assets/bg-app.png"))
+        self.bg.setScaledContents(True)
 
         self.lineEdit_data = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_data.setGeometry(QtCore.QRect(210, 100, 241, 51))

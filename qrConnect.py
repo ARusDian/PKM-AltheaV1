@@ -5,8 +5,11 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from PIL.ImageQt import ImageQt
 import random
 import qrcode
+from PyQt5.QtGui import QPixmap
 
 from paho.mqtt import client as mqtt_client
+
+from components.PushableLabel import PushableLabel
 
 
 class Ui_MainWindow(object):
@@ -38,6 +41,13 @@ class Ui_MainWindow(object):
         client.connect(self.broker, self.port)
         return client
 
+    def menu(self, MainWindow):
+        self.client.loop_stop()
+        from awal import Ui_MainWindow
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+
     def kembali(self, MainWindow):
         self.client.loop_stop()
         from kalkulasi import Ui_MainWindow
@@ -63,6 +73,12 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+
+        self.bg = QtWidgets.QLabel(self.centralwidget)
+        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setPixmap(QPixmap("assets/bg-app.png"))
+        self.bg.setScaledContents(True)
+
         self.label_QrToken = QtWidgets.QLabel(self.centralwidget)
         self.label_QrToken.setGeometry(QtCore.QRect(10, -20, 300, 300))
         self.label_QrToken.setPixmap(QtGui.QPixmap.fromImage(ImageQt((qrcode.make(self.token)))))
@@ -80,19 +96,26 @@ class Ui_MainWindow(object):
         font_token.setPointSize(18)
         font_token.setBold(True)
         self.label_TokenValue.setFont(font_token)
-        self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Simpan.setGeometry(QtCore.QRect(340, 270, 111, 21))
-        self.pushButton_Simpan.setText("Kirim")
-        self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Kembali.setGeometry(QtCore.QRect(100, 270, 111, 21))
-        self.pushButton_Kembali.setText("Kembali")
-        self.pushButton_Awal = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Awal.setGeometry(QtCore.QRect(220, 270, 111, 21))
-        self.pushButton_Awal.setText("Menu Utama")
+        self.pushButton_Simpan = PushableLabel(self.centralwidget)
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(340, 270, 111, 41))
+        self.pushButton_Simpan.onMousePressEvent = lambda _: self.publish()
+        self.pushButton_Simpan.setPixmap(QPixmap("assets/kirim.png"))
+        self.pushButton_Simpan.setScaledContents(True)
+
+        self.pushButton_Kembali = PushableLabel(self.centralwidget)
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(100, 270, 111, 41))
+        self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
+        self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
+        self.pushButton_Kembali.setScaledContents(True)
+
+        self.pushButton_Awal = PushableLabel(self.centralwidget)
+        self.pushButton_Awal.setGeometry(QtCore.QRect(220, 270, 111, 41))
+        self.pushButton_Awal.onMousePressEvent = lambda _: self.menu(MainWindow)
+        self.pushButton_Awal.setPixmap(QPixmap("assets/menu-utama.png"))
+        self.pushButton_Awal.setScaledContents(True)
+
         MainWindow.setCentralWidget(self.centralwidget)
 
-        self.pushButton_Simpan.clicked.connect(lambda _: self.publish())
-        self.pushButton_Kembali.clicked.connect(lambda _: self.kembali(MainWindow))
 
 
 

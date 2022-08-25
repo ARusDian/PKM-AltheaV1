@@ -1,4 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QPixmap
+
+from components.PushableLabel import PushableLabel
 
 
 class Ui_MainWindow(object):
@@ -18,25 +21,47 @@ class Ui_MainWindow(object):
         ui.setupUi(MainWindow)
         MainWindow.show()
 
+    def menu(self, MainWindow):
+        from awal import Ui_MainWindow
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+
+        self.bg = QtWidgets.QLabel(self.centralwidget)
+        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setPixmap(QPixmap("assets/bg-app.png"))
+        self.bg.setScaledContents(True)
+
         self.label_Pilih = QtWidgets.QLabel(self.centralwidget)
         self.label_Pilih.setGeometry(QtCore.QRect(210, 10, 81, 20))
         self.label_Pilih.setText("Perhitungan")
-        self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Simpan.setGeometry(QtCore.QRect(340, 270, 111, 21))
-        self.pushButton_Simpan.setText("Kirim")
-        self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Kembali.setGeometry(QtCore.QRect(100, 270, 111, 21))
-        self.pushButton_Kembali.setText("Kembali")
-        self.pushButton_Kembali.clicked.connect(lambda _: self.kembali(MainWindow))
-        self.label_BeratBadan = QtWidgets.QLabel(self.centralwidget)
+
+        self.label_BeratBadan = PushableLabel(self.centralwidget)
         self.label_BeratBadan.setGeometry(QtCore.QRect(70, 120, 171, 21))
         self.label_BeratBadan.setText("Estimasi Berat Badan : ")
-        self.pushButton_Awal = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Awal.setGeometry(QtCore.QRect(220, 270, 111, 21))
-        self.pushButton_Awal.setText("Menu Utama")
+
+        self.pushButton_Simpan = PushableLabel(self.centralwidget)
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(340, 270, 111, 41))
+        self.pushButton_Simpan.onMousePressEvent = lambda _: self.publish(MainWindow)
+        self.pushButton_Simpan.setPixmap(QPixmap("assets/kirim.png"))
+        self.pushButton_Simpan.setScaledContents(True)
+
+        self.pushButton_Kembali = PushableLabel(self.centralwidget)
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(100, 270, 111, 41))
+        self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
+        self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
+        self.pushButton_Kembali.setScaledContents(True)
+
+        self.pushButton_Awal = PushableLabel(self.centralwidget)
+        self.pushButton_Awal.setGeometry(QtCore.QRect(220, 270, 111, 41))
+        self.pushButton_Awal.onMousePressEvent = lambda _: self.menu(MainWindow)
+        self.pushButton_Awal.setPixmap(QPixmap("assets/menu-utama.png"))
+        self.pushButton_Awal.setScaledContents(True)
+
         self.label_TinggiBadan = QtWidgets.QLabel(self.centralwidget)
         self.label_TinggiBadan.setGeometry(QtCore.QRect(70, 150, 171, 21))
         self.label_TinggiBadan.setText("Estimasi Tinggi Badan : ")
@@ -70,7 +95,6 @@ class Ui_MainWindow(object):
         self.label_Token.setGeometry(QtCore.QRect(70, 220, 381, 21))
         self.label_Token.setText("Menuju Ke Halaman Selanjutnya untuk menampilkan Token")
 
-        self.pushButton_Simpan.clicked.connect(lambda _: self.publish(MainWindow))
         MainWindow.setCentralWidget(self.centralwidget)
 
 
@@ -79,7 +103,18 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow({})
+    ui = Ui_MainWindow({
+        "umur": 0,
+        "gender": "",
+        "lingkarLengan": 0,
+        "lingkarKepala": 0,
+        "lingkarPerut": 0,
+        "lingkarPinggul": 0,
+        "tinggiBadan": 0,
+        "tinggiLutut": 0,
+        "setengahDepan": 0,
+        "suhu": 0,
+    })
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())

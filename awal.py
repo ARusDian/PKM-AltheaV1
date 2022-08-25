@@ -1,5 +1,8 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
+
+from components.PushableLabel import PushableLabel
 
 
 class Ui_MainWindow(object):
@@ -44,6 +47,10 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.bg = QtWidgets.QLabel(self.centralwidget)
+        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setPixmap(QPixmap("assets/bg-app.png"))
+        self.bg.setScaledContents(True)
         self.label_JenisKelamin = QtWidgets.QLabel(self.centralwidget)
         self.label_JenisKelamin.setGeometry(QtCore.QRect(185, 134, 100, 16))
         self.label_JenisKelamin.setText("Pilih Jenis Kelamin")
@@ -56,22 +63,29 @@ class Ui_MainWindow(object):
         self.radioButton_Perempuan = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_Perempuan.setGeometry(QtCore.QRect(260, 170, 82, 17))
         self.radioButton_Perempuan.setText("Perempuan")
-        self.pushButton_UP = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_UP.setGeometry(QtCore.QRect(240, 94, 75, 23))
-        self.pushButton_UP.setText(">")
-        self.pushButton_UP.clicked.connect(self.Up)
-        self.pushButton_DOWN = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_DOWN.setGeometry(QtCore.QRect(160, 94, 75, 23))
-        self.pushButton_DOWN.setText("<")
-        self.pushButton_DOWN.clicked.connect(self.Down)
+
+        self.pushButton_UP = PushableLabel(self.centralwidget)
+        self.pushButton_UP.setGeometry(QtCore.QRect(250, 94, 60, 23))
+        self.pushButton_UP.onMousePressEvent = lambda _: self.Up()
+        self.pushButton_UP.setPixmap(QPixmap("assets/arrow-right.png"))
+        self.pushButton_UP.setScaledContents(True)
+
+        self.pushButton_DOWN = PushableLabel(self.centralwidget)
+        self.pushButton_DOWN.setGeometry(QtCore.QRect(160, 94, 60, 23))
+        self.pushButton_DOWN.onMousePressEvent = lambda _: self.Down()
+        self.pushButton_DOWN.setPixmap(QPixmap("assets/arrow-left.png"))
+        self.pushButton_DOWN.setScaledContents(True)
+
         self.label_NilaiUmur = QtWidgets.QLabel(self.centralwidget)
         self.label_NilaiUmur.setGeometry(QtCore.QRect(180, 60, 110, 20))
         self.label_NilaiUmur.setText("0")
         self.label_NilaiUmur.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.pushButton_Next = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Next.setGeometry(QtCore.QRect(320, 230, 111, 21))
-        self.pushButton_Next.setText("Selanjutnya")
-        self.pushButton_Next.clicked.connect(lambda x: self.toNext(MainWindow))
+
+        self.pushButton_Next = PushableLabel(self.centralwidget)
+        self.pushButton_Next.setGeometry(QtCore.QRect(240, 230, 181, 61))
+        self.pushButton_Next.setPixmap(QPixmap("assets/selanjutnya2.png"))
+        self.pushButton_Next.onMousePressEvent = lambda _: self.toNext(MainWindow)
+        self.pushButton_Next.setScaledContents(True)
         MainWindow.setCentralWidget(self.centralwidget)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

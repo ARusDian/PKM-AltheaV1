@@ -1,4 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QPixmap
+
+from components.PushableLabel import PushableLabel
 
 
 class Ui_MainWindow(object):
@@ -28,49 +31,63 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.resize(480, 320)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+
+        self.bg = QtWidgets.QLabel(self.centralwidget)
+        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setPixmap(QPixmap("assets/bg-app.png"))
+        self.bg.setScaledContents(True)
+
         self.label_Pilih = QtWidgets.QLabel(self.centralwidget)
         self.label_Pilih.setGeometry(QtCore.QRect(60, 10, 120, 25))
         self.label_Pilih.setText("Pilih Pengukuran")
 
-        self.pushButton_LingkarLengan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_LingkarLengan.setGeometry(QtCore.QRect(10, 40, 181, 25))
-        self.pushButton_LingkarLengan.setText("Lingkar Lengan")
-        self.pushButton_LingkarLengan.clicked.connect(lambda: self.pengambilanData(MainWindow, "lingkarLengan"))
+        self.pushButton_LingkarLengan = PushableLabel(self.centralwidget)
+        self.pushButton_LingkarLengan.setGeometry(QtCore.QRect(10, 40, 141, 35))
+        self.pushButton_LingkarLengan.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "lingkarLengan")
+        self.pushButton_LingkarLengan.setPixmap(QPixmap("assets/lingkar-lengan.png"))
+        self.pushButton_LingkarLengan.setScaledContents(True)
 
-        self.pushButton_LingkarKepala = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_LingkarKepala.setGeometry(QtCore.QRect(10, 70, 181, 25))
-        self.pushButton_LingkarKepala.setText("Lingkar Kepala")
-        self.pushButton_LingkarKepala.clicked.connect(lambda: self.pengambilanData(MainWindow, "lingkarKepala"))
+        self.pushButton_LingkarKepala = PushableLabel(self.centralwidget)
+        self.pushButton_LingkarKepala.setGeometry(QtCore.QRect(10, 70, 141, 35))
+        self.pushButton_LingkarKepala.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "lingkarKepala")
+        self.pushButton_LingkarKepala.setPixmap(QPixmap("assets/lingkar-kepala.png"))
+        self.pushButton_LingkarKepala.setScaledContents(True)
 
-        self.pushButton_LingkarPerut = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_LingkarPerut.setGeometry(QtCore.QRect(10, 100, 181, 25))
-        self.pushButton_LingkarPerut.setText("Lingkar Perut")
-        self.pushButton_LingkarPerut.clicked.connect(lambda: self.pengambilanData(MainWindow, "lingkarPerut"))
+        self.pushButton_LingkarPerut = PushableLabel(self.centralwidget)
+        self.pushButton_LingkarPerut.setGeometry(QtCore.QRect(10, 100, 141, 35))
+        self.pushButton_LingkarPerut.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "lingkarPerut")
+        self.pushButton_LingkarPerut.setPixmap(QPixmap("assets/lingkar-perut.png"))
+        self.pushButton_LingkarPerut.setScaledContents(True)
 
-        self.pushButton_LingkarPinggul = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_LingkarPinggul.setGeometry(QtCore.QRect(10, 130, 181, 25))
-        self.pushButton_LingkarPinggul.setText("Lingkar Pinggul")
-        self.pushButton_LingkarPinggul.clicked.connect(lambda: self.pengambilanData(MainWindow, "lingkarPinggul"))
+        self.pushButton_LingkarPinggul = PushableLabel(self.centralwidget)
+        self.pushButton_LingkarPinggul.setGeometry(QtCore.QRect(10, 130, 141, 35))
+        self.pushButton_LingkarPinggul.onMousePressEvent = lambda: self.pengambilanData(MainWindow, "lingkarPinggul")
+        self.pushButton_LingkarPinggul.setPixmap(QPixmap("assets/lingkar-pinggul.png"))
+        self.pushButton_LingkarPinggul.setScaledContents(True)
 
-        self.pushButton_TinggiBadan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_TinggiBadan.setGeometry(QtCore.QRect(10, 160, 181, 25))
-        self.pushButton_TinggiBadan.setText("Tinggi Badan")
-        self.pushButton_TinggiBadan.clicked.connect(lambda: self.pengambilanData(MainWindow, "tinggiBadan"))
+        self.pushButton_TinggiBadan = PushableLabel(self.centralwidget)
+        self.pushButton_TinggiBadan.setGeometry(QtCore.QRect(10, 160, 141, 35))
+        self.pushButton_TinggiBadan.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "tinggiBadan")
+        self.pushButton_TinggiBadan.setPixmap(QPixmap("assets/tinggi-badan.png"))
+        self.pushButton_TinggiBadan.setScaledContents(True)
 
-        self.pushButton_TinggiLutut = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_TinggiLutut.setGeometry(QtCore.QRect(10, 190, 181, 25))
-        self.pushButton_TinggiLutut.setText("Tinggi Lutut")
-        self.pushButton_TinggiLutut.clicked.connect(lambda: self.pengambilanData(MainWindow, "tinggiLutut"))
+        self.pushButton_TinggiLutut = PushableLabel(self.centralwidget)
+        self.pushButton_TinggiLutut.setGeometry(QtCore.QRect(10, 190, 141, 35))
+        self.pushButton_TinggiLutut.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "tinggiLutut")
+        self.pushButton_TinggiLutut.setPixmap(QPixmap("assets/tinggi-lutut.png"))
+        self.pushButton_TinggiLutut.setScaledContents(True)
 
-        self.pushButton_SetengahDepan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_SetengahDepan.setGeometry(QtCore.QRect(10, 220, 181, 25))
-        self.pushButton_SetengahDepan.setText("Setengah Depan")
-        self.pushButton_SetengahDepan.clicked.connect(lambda: self.pengambilanData(MainWindow, "setengahDepan"))
+        self.pushButton_SetengahDepan = PushableLabel(self.centralwidget)
+        self.pushButton_SetengahDepan.setGeometry(QtCore.QRect(10, 220, 141, 35))
+        self.pushButton_SetengahDepan.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "setengahDepan")
+        self.pushButton_SetengahDepan.setPixmap(QPixmap("assets/setengah-depa.png"))
+        self.pushButton_SetengahDepan.setScaledContents(True)
 
-        self.pushButton_Suhu = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Suhu.setGeometry(QtCore.QRect(10, 250, 181, 25))
-        self.pushButton_Suhu.setText("Suhu")
-        self.pushButton_Suhu.clicked.connect(lambda: self.pengambilanData(MainWindow, "suhu"))
+        self.pushButton_Suhu = PushableLabel(self.centralwidget)
+        self.pushButton_Suhu.setGeometry(QtCore.QRect(10, 250, 141, 35))
+        self.pushButton_Suhu.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "suhu")
+        self.pushButton_Suhu.setPixmap(QPixmap("assets/suhu.png"))
+        self.pushButton_Suhu.setScaledContents(True)
 
         self.label_LingkarLengan = QtWidgets.QLabel(self.centralwidget)
         self.label_LingkarLengan.setGeometry(QtCore.QRect(210, 40, 371, 25))
@@ -99,17 +116,27 @@ class Ui_MainWindow(object):
         self.label_Suhu = QtWidgets.QLabel(self.centralwidget)
         self.label_Suhu.setGeometry(QtCore.QRect(210, 250, 371, 25))
         self.label_Suhu.setText(f'Suhu Tubuh: {self.data["suhu"]} °C')
-        self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Simpan.setGeometry(QtCore.QRect(330, 285, 111, 25))
+
+        self.pushButton_Simpan = PushableLabel(self.centralwidget)
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(330, 285, 111, 35))
         self.pushButton_Simpan.setText("Simpan dan Kirim")
-        self.pushButton_Simpan.clicked.connect(lambda: self.kalkulasiData(MainWindow))
-        self.pushButton_Reset = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Reset.setGeometry(QtCore.QRect(210, 285, 111, 25))
+        self.pushButton_Simpan.onMousePressEvent = lambda _: self.kalkulasiData(MainWindow)
+        self.pushButton_Simpan.setPixmap(QPixmap("assets/simpan&kirim.png"))
+        self.pushButton_Simpan.setScaledContents(True)
+
+        self.pushButton_Reset = PushableLabel(self.centralwidget)
+        self.pushButton_Reset.setGeometry(QtCore.QRect(210, 285, 111, 35))
         self.pushButton_Reset.setText("Reset")
-        self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Kembali.setGeometry(QtCore.QRect(90, 285, 111, 25))
+        self.pushButton_Reset.setPixmap(QPixmap("assets/reset.png"))
+        self.pushButton_Reset.setScaledContents(True)
+
+        self.pushButton_Kembali = PushableLabel(self.centralwidget)
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(90, 285, 111, 35))
         self.pushButton_Kembali.setText("Kembali")
-        self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
+        self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
+        self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
+        self.pushButton_Kembali.setScaledContents(True)
+
         MainWindow.setCentralWidget(self.centralwidget)
 
 
