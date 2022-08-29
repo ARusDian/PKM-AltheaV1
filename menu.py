@@ -11,10 +11,16 @@ class Ui_MainWindow(object):
         self.data = data
 
     def pengambilanData(self, MainWindow, mode):
-        from getData import Ui_MainWindow
-        self.ui = Ui_MainWindow(self.data, mode)
-        self.ui.setupUi(MainWindow)
-        MainWindow.show()
+        if mode == "suhu":
+            from getSuhu import Ui_MainWindow
+            self.ui = Ui_MainWindow(self.data,mode)
+            self.ui.setupUi(MainWindow)
+            MainWindow.show()
+        else:
+            from getData import Ui_MainWindow
+            self.ui = Ui_MainWindow(self.data, mode)
+            self.ui.setupUi(MainWindow)
+            MainWindow.show()
 
     def kalkulasiData(self, MainWindow):
         from kalkulasi import Ui_MainWindow

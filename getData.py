@@ -4,12 +4,13 @@ from PyQt5.QtGui import QPixmap
 from SensorModules import RotaryEncoder
 
 import pigpio
+from components.PushableLabel import PushableLabel
 
 
 class Ui_MainWindow(object):
     currentData = ""
     data = {}
-    pos = 2.5000
+    pos = 3.5000
 
     def __init__(self, data, currentData):
         self.data = data
@@ -20,22 +21,18 @@ class Ui_MainWindow(object):
     def callback(self,way):
         self.pos += way
         # cm = pos + 3,0
-        self.data[self.currentData] = self.pos
-        self.label_currentValue.setText(str(self.pos))
-        print(f"pos={self.pos}")
+        # self.data[self.currentData] = self.pos
+        # self.label_currentValue.setText(str(self.pos))
+        # print(f"pos={self.pos}")
 
     def simpan(self):
-        self.data[self.currentData] = int(self.lineEdit_data.text())
-        # self.label_currentValue.setText(self.lineEdit_data.text())
-        if self.currentData != "suhu":
-            print("Suhu")
-        else:
-            print("Not Suhu")
+        self.data[self.currentData] = self.pos
+        self.label_currentValue.setText(f"{self.pos}")
 
     def kembali(self, MainWindow):
         from menu import Ui_MainWindow
-        self.decoder.cancel()
-        self.pi.stop()
+        # self.decoder.cancel()
+        # self.pi.stop()
         ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
         MainWindow.show()
@@ -61,15 +58,17 @@ class Ui_MainWindow(object):
         self.label_data.setGeometry(QtCore.QRect(50, 100, 121, 51))
         self.label_data.setText(self.currentData)
 
-        self.pushButton_kembali = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_kembali.setGeometry(QtCore.QRect(210, 240, 111, 41))
-        self.pushButton_kembali.setText("Kembali")
-        self.pushButton_kembali.clicked.connect(lambda x: self.kembali(MainWindow))
+        self.pushButton_Kembali = PushableLabel(self.centralwidget)
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(60, 240, 181, 61))
+        self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
+        self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
+        self.pushButton_Kembali.setScaledContents(True)
 
-        self.pushButton_simpan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_simpan.setGeometry(QtCore.QRect(340, 240, 111, 41))
-        self.pushButton_simpan.setText("Simpan")
-        self.pushButton_simpan.clicked.connect(lambda x: self.simpan())
+        self.pushButton_Simpan = PushableLabel(self.centralwidget)
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(270, 240, 181, 61))
+        self.pushButton_Simpan.onMousePressEvent = lambda x: self.simpan()
+        self.pushButton_Simpan.setPixmap(QPixmap("assets/simpan.png"))
+        self.pushButton_Simpan.setScaledContents(True)
 
         self.label_currentData = QtWidgets.QLabel(self.centralwidget)
         self.label_currentData.setGeometry(QtCore.QRect(50, 175, 121, 41))
