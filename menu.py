@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QFont
 
 from components.PushableLabel import PushableLabel
 
@@ -35,109 +35,86 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(480, 320)
+        MainWindow.resize(640, 480)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         self.bg = QtWidgets.QLabel(self.centralwidget)
-        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 480))
         self.bg.setPixmap(QPixmap("assets/bg-app.png"))
         self.bg.setScaledContents(True)
 
+        font16 = QFont()
+        font16.setPixelSize(20)
+
         self.label_Pilih = QtWidgets.QLabel(self.centralwidget)
-        self.label_Pilih.setGeometry(QtCore.QRect(60, 10, 120, 25))
+        self.label_Pilih.setGeometry(QtCore.QRect(90, 10, 180, 25))
         self.label_Pilih.setText("Pilih Pengukuran")
+        self.label_Pilih.setFont(font16)
+
+        self.label_hasil = QtWidgets.QLabel(self.centralwidget)
+        self.label_hasil.setGeometry(QtCore.QRect(360, 10, 180, 25))
+        self.label_hasil.setText("Hasil Pengukuran")
+        self.label_hasil.setFont(font16)
 
         self.pushButton_LingkarLengan = PushableLabel(self.centralwidget)
-        self.pushButton_LingkarLengan.setGeometry(QtCore.QRect(10, 40, 141, 35))
+        self.pushButton_LingkarLengan.setGeometry(QtCore.QRect(80, 70, 181, 61))
         self.pushButton_LingkarLengan.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "lingkarLengan")
         self.pushButton_LingkarLengan.setPixmap(QPixmap("assets/lingkar-lengan.png"))
         self.pushButton_LingkarLengan.setScaledContents(True)
 
-        self.pushButton_LingkarKepala = PushableLabel(self.centralwidget)
-        self.pushButton_LingkarKepala.setGeometry(QtCore.QRect(10, 70, 141, 35))
-        self.pushButton_LingkarKepala.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "lingkarKepala")
-        self.pushButton_LingkarKepala.setPixmap(QPixmap("assets/lingkar-kepala.png"))
-        self.pushButton_LingkarKepala.setScaledContents(True)
-
-        self.pushButton_LingkarPerut = PushableLabel(self.centralwidget)
-        self.pushButton_LingkarPerut.setGeometry(QtCore.QRect(10, 100, 141, 35))
-        self.pushButton_LingkarPerut.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "lingkarPerut")
-        self.pushButton_LingkarPerut.setPixmap(QPixmap("assets/lingkar-perut.png"))
-        self.pushButton_LingkarPerut.setScaledContents(True)
-
-        self.pushButton_LingkarPinggul = PushableLabel(self.centralwidget)
-        self.pushButton_LingkarPinggul.setGeometry(QtCore.QRect(10, 130, 141, 35))
-        self.pushButton_LingkarPinggul.onMousePressEvent = lambda: self.pengambilanData(MainWindow, "lingkarPinggul")
-        self.pushButton_LingkarPinggul.setPixmap(QPixmap("assets/lingkar-pinggul.png"))
-        self.pushButton_LingkarPinggul.setScaledContents(True)
-
-        self.pushButton_TinggiBadan = PushableLabel(self.centralwidget)
-        self.pushButton_TinggiBadan.setGeometry(QtCore.QRect(10, 160, 141, 35))
-        self.pushButton_TinggiBadan.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "tinggiBadan")
-        self.pushButton_TinggiBadan.setPixmap(QPixmap("assets/tinggi-badan.png"))
-        self.pushButton_TinggiBadan.setScaledContents(True)
-
-        self.pushButton_TinggiLutut = PushableLabel(self.centralwidget)
-        self.pushButton_TinggiLutut.setGeometry(QtCore.QRect(10, 190, 141, 35))
-        self.pushButton_TinggiLutut.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "tinggiLutut")
-        self.pushButton_TinggiLutut.setPixmap(QPixmap("assets/tinggi-lutut.png"))
-        self.pushButton_TinggiLutut.setScaledContents(True)
-
-        self.pushButton_SetengahDepan = PushableLabel(self.centralwidget)
-        self.pushButton_SetengahDepan.setGeometry(QtCore.QRect(10, 220, 141, 35))
-        self.pushButton_SetengahDepan.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "setengahDepan")
-        self.pushButton_SetengahDepan.setPixmap(QPixmap("assets/setengah-depa.png"))
-        self.pushButton_SetengahDepan.setScaledContents(True)
+        self.label_LingkarLengan = QtWidgets.QLabel(self.centralwidget)
+        self.label_LingkarLengan.setGeometry(QtCore.QRect(360, 80, 371, 25))
+        self.label_LingkarLengan.setText(f'Lingkar Lengan: {self.data["lingkarLengan"]} cm')
+        self.label_LingkarLengan.setFont(font16)
 
         self.pushButton_Suhu = PushableLabel(self.centralwidget)
-        self.pushButton_Suhu.setGeometry(QtCore.QRect(10, 250, 141, 35))
+        self.pushButton_Suhu.setGeometry(QtCore.QRect(80, 270, 181, 61))
         self.pushButton_Suhu.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "suhu")
         self.pushButton_Suhu.setPixmap(QPixmap("assets/suhu.png"))
         self.pushButton_Suhu.setScaledContents(True)
 
-        self.label_LingkarLengan = QtWidgets.QLabel(self.centralwidget)
-        self.label_LingkarLengan.setGeometry(QtCore.QRect(210, 40, 371, 25))
-        self.label_LingkarLengan.setText(f'Lingkar Lengan: {self.data["lingkarLengan"]} cm')
-        self.label_hasil = QtWidgets.QLabel(self.centralwidget)
-        self.label_hasil.setGeometry(QtCore.QRect(260, 10, 111, 25))
-        self.label_hasil.setText("Hasil Pengukuran")
-        self.label_LingkarKepala = QtWidgets.QLabel(self.centralwidget)
-        self.label_LingkarKepala.setGeometry(QtCore.QRect(210, 70, 371, 25))
-        self.label_LingkarKepala.setText(f'Lingkar Kepala: {self.data["lingkarKepala"]} cm')
-        self.label_LingkarPerut = QtWidgets.QLabel(self.centralwidget)
-        self.label_LingkarPerut.setGeometry(QtCore.QRect(210, 100, 371, 25))
-        self.label_LingkarPerut.setText(f'Lingkar Perut: {self.data["lingkarPerut"]} cm')
-        self.label_LingkarPinggul = QtWidgets.QLabel(self.centralwidget)
-        self.label_LingkarPinggul.setGeometry(QtCore.QRect(210, 130, 371, 25))
-        self.label_LingkarPinggul.setText(f'Lingkar Pinggul: {self.data["lingkarPinggul"]} cm')
-        self.label_TinggiBadan = QtWidgets.QLabel(self.centralwidget)
-        self.label_TinggiBadan.setGeometry(QtCore.QRect(210, 160, 371, 25))
-        self.label_TinggiBadan.setText(f'Tinggi Badan: {self.data["tinggiBadan"]} cm')
-        self.label_TinggiLutut = QtWidgets.QLabel(self.centralwidget)
-        self.label_TinggiLutut.setGeometry(QtCore.QRect(210, 190, 371, 25))
-        self.label_TinggiLutut.setText(f'Tinggi Lutut: {self.data["tinggiLutut"]} cm')
-        self.label_SetengahDepan = QtWidgets.QLabel(self.centralwidget)
-        self.label_SetengahDepan.setGeometry(QtCore.QRect(210, 220, 371, 25))
-        self.label_SetengahDepan.setText(f'Setengah Depan: {self.data["setengahDepan"]} cm')
         self.label_Suhu = QtWidgets.QLabel(self.centralwidget)
-        self.label_Suhu.setGeometry(QtCore.QRect(210, 250, 371, 25))
+        self.label_Suhu.setGeometry(QtCore.QRect(360, 280, 371, 25))
         self.label_Suhu.setText(f'Suhu Tubuh: {self.data["suhu"]} °C')
+        self.label_Suhu.setFont(font16)
+
+        self.pushButton_LingkarKepala = PushableLabel(self.centralwidget)
+        self.pushButton_LingkarKepala.setGeometry(QtCore.QRect(80, 140, 181, 61))
+        self.pushButton_LingkarKepala.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "lingkarKepala")
+        self.pushButton_LingkarKepala.setPixmap(QPixmap("assets/lingkar-kepala.png"))
+        self.pushButton_LingkarKepala.setScaledContents(True)
+
+        self.label_LingkarKepala = QtWidgets.QLabel(self.centralwidget)
+        self.label_LingkarKepala.setGeometry(QtCore.QRect(360, 150, 371, 25))
+        self.label_LingkarKepala.setText(f'Lingkar Kepala: {self.data["lingkarKepala"]} cm')
+        self.label_LingkarKepala.setFont(font16)
+
+        self.pushButton_SetengahDepa = PushableLabel(self.centralwidget)
+        self.pushButton_SetengahDepa.setGeometry(QtCore.QRect(80, 210, 181, 61))
+        self.pushButton_SetengahDepa.onMousePressEvent = lambda _: self.pengambilanData(MainWindow, "setengahDepa")
+        self.pushButton_SetengahDepa.setPixmap(QPixmap("assets/setengah-depa.png"))
+        self.pushButton_SetengahDepa.setScaledContents(True)
+
+        self.label_SetengahDepa = QtWidgets.QLabel(self.centralwidget)
+        self.label_SetengahDepa.setGeometry(QtCore.QRect(360, 220, 371, 25))
+        self.label_SetengahDepa.setText(f'Setengah Depan: {self.data["setengahDepa"]} cm')
+        self.label_SetengahDepa.setFont(font16)
 
         self.pushButton_Simpan = PushableLabel(self.centralwidget)
-        self.pushButton_Simpan.setGeometry(QtCore.QRect(330, 285, 111, 35))
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(450, 350, 181, 61))
         self.pushButton_Simpan.setText("Simpan dan Kirim")
         self.pushButton_Simpan.onMousePressEvent = lambda _: self.kalkulasiData(MainWindow)
         self.pushButton_Simpan.setPixmap(QPixmap("assets/simpan&kirim.png"))
         self.pushButton_Simpan.setScaledContents(True)
 
         self.pushButton_Reset = PushableLabel(self.centralwidget)
-        self.pushButton_Reset.setGeometry(QtCore.QRect(210, 285, 111, 35))
+        self.pushButton_Reset.setGeometry(QtCore.QRect(250, 350, 181, 61))
         self.pushButton_Reset.setText("Reset")
         self.pushButton_Reset.setPixmap(QPixmap("assets/reset.png"))
         self.pushButton_Reset.setScaledContents(True)
 
         self.pushButton_Kembali = PushableLabel(self.centralwidget)
-        self.pushButton_Kembali.setGeometry(QtCore.QRect(90, 285, 111, 35))
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(50, 350, 181, 61))
         self.pushButton_Kembali.setText("Kembali")
         self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
         self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
@@ -150,7 +127,14 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow({})
+    ui = Ui_MainWindow({
+        "umur": 0,
+        "gender": "",
+        "lingkarKepala": 0,
+        "setengahDepa": 0,
+        "lingkarLengan": 0,
+        "suhu": 0,
+    })
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())

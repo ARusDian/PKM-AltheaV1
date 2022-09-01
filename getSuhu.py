@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QFont
 
 from components.PushableLabel import PushableLabel
 
@@ -32,44 +32,52 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(480, 320)
+        MainWindow.resize(640, 480)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         self.bg = QtWidgets.QLabel(self.centralwidget)
-        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 480))
         self.bg.setPixmap(QPixmap("assets/bg-app.png"))
         self.bg.setScaledContents(True)
 
+        font16 = QFont()
+        font16.setPixelSize(20)
+
         self.lineEdit_data = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_data.setGeometry(QtCore.QRect(210, 100, 241, 51))
+        self.lineEdit_data.setGeometry(QtCore.QRect(280, 100, 241, 51))
         self.lineEdit_data.setText("0")
 
         self.label_judul = QtWidgets.QLabel(self.centralwidget)
-        self.label_judul.setGeometry(QtCore.QRect(150, 30, 181, 41))
+        self.label_judul.setGeometry(QtCore.QRect(200, 30, 300, 41))
         self.label_judul.setText("Data Terukur : " + self.currentData)
+        self.label_judul.setFont(font16)
 
         self.label_data = QtWidgets.QLabel(self.centralwidget)
-        self.label_data.setGeometry(QtCore.QRect(50, 100, 121, 51))
+        self.label_data.setGeometry(QtCore.QRect(80, 100, 210, 51))
         self.label_data.setText(self.currentData)
+        self.label_data.setFont(font16)
 
         self.pushButton_Kembali = PushableLabel(self.centralwidget)
-        self.pushButton_Kembali.setGeometry(QtCore.QRect(60, 240, 181, 61))
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(60, 300, 181, 61))
         self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
         self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
         self.pushButton_Kembali.setScaledContents(True)
 
         self.pushButton_Simpan = PushableLabel(self.centralwidget)
-        self.pushButton_Simpan.setGeometry(QtCore.QRect(270, 240, 181, 61))
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(270, 300, 181, 61))
         self.pushButton_Simpan.onMousePressEvent = lambda x: self.simpan()
         self.pushButton_Simpan.setPixmap(QPixmap("assets/simpan.png"))
         self.pushButton_Simpan.setScaledContents(True)
 
         self.label_currentData = QtWidgets.QLabel(self.centralwidget)
-        self.label_currentData.setGeometry(QtCore.QRect(50, 175, 121, 41))
+        self.label_currentData.setGeometry(QtCore.QRect(80, 175, 210, 51))
         self.label_currentData.setText("Data Sekarang")
+        self.label_currentData.setFont(font16)
+
         self.label_currentValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_currentValue.setGeometry(QtCore.QRect(210, 170, 121, 41))
+        self.label_currentValue.setGeometry(QtCore.QRect(280, 170, 121, 41))
         self.label_currentValue.setText("DataValue")
+        self.label_currentValue.setFont(font16)
         MainWindow.setCentralWidget(self.centralwidget)
 
 
