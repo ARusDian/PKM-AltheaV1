@@ -13,8 +13,8 @@ class Ui_MainWindow(object):
     def __init__(self, data, currentData):
         self.data = data
         self.currentData = currentData
-        self.pi = pigpio.pi()
-        self.decoder = RotaryEncoder.decoder(self.pi, 6, 13, self.callback)
+        # self.pi = pigpio.pi()
+        # self.decoder = RotaryEncoder.decoder(self.pi, 6, 13, self.callback)
 
     def callback(self,way):
         self.pos += way
@@ -29,8 +29,8 @@ class Ui_MainWindow(object):
 
     def kembali(self, MainWindow):
         from menu import Ui_MainWindow
-        self.decoder.cancel()
-        self.pi.stop()
+        # self.decoder.cancel()
+        # self.pi.stop()
         ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
         MainWindow.show()

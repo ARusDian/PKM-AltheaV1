@@ -5,7 +5,6 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from PIL.ImageQt import ImageQt
 import random
 import qrcode
-from PyQt5.QtCore import QMutex
 from PyQt5.QtGui import QPixmap
 
 from paho.mqtt import client as mqtt_client
@@ -24,15 +23,12 @@ class Ui_MainWindow(object):
     client = mqtt_client.Client()
 
     def publish(self):
-        self._mutex.lock()
         result = self.client.publish(
             self.topic + self.token,
-            json.dumps(self.msgData),
+            json.dumps(self.data),
         )
-        self._mutex.unlock()
 
     def connect_mqtt(self):
-        self._mutex.lock()
         def on_connect(client, userdata, flags, rc):
             if rc == 0:
                 print("Connected to MQTT Broker!")
@@ -43,49 +39,45 @@ class Ui_MainWindow(object):
         client.username_pw_set(self.username, self.password)
         client.on_connect = on_connect
         client.connect(self.broker, self.port)
-        self._mutex.unlock()
         return client
 
     def menu(self, MainWindow):
-        self._mutex.lock()
         self.client.loop_stop()
         from awal import Ui_MainWindow
         ui = Ui_MainWindow()
         ui.setupUi(MainWindow)
-        self._mutex.lock()
         MainWindow.show()
 
     def kembali(self, MainWindow):
-        self._mutex.lock()
+        # self._mutex.lock()
         self.client.loop_stop()
         from kalkulasi import Ui_MainWindow
         ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
-        self._mutex.unlock()
+        # self._mutex.unlock()
         MainWindow.show()
 
     def __init__(self, data):
-        self._mutex = QMutex()
         self.token = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(8))
         self.client = self.connect_mqtt()
         self.client.loop_start()
-        self.msgData = {
-            'gender': 'Laki-laki',
-            'umur': 3,
-            'estimasi_tinggi_badan': 80,
-            'estimasi_berat_badan': 18,
-            'status_gizi': 'baik',
-            'lingkar_kepala': 45,
-            'lingkar_lengan': 34
-        }
+        # self.msgData = {
+        #     'gender': 'Laki-laki',
+        #     'umur': 3,
+        #     'estimasi_tinggi_badan': 80,
+        #     'estimasi_berat_badan': 18,
+        #     'status_gizi': 'baik',
+        #     'lingkar_kepala': 45,
+        #     'lingkar_lengan': 34
+        # }
         self.data = data
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(480, 320)
+        MainWindow.resize(640, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         self.bg = QtWidgets.QLabel(self.centralwidget)
-        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 420))
         self.bg.setPixmap(QPixmap("assets/bg-app.png"))
         self.bg.setScaledContents(True)
 

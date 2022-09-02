@@ -26,7 +26,6 @@ class Ui_MainWindow(object):
 
     def __init__(self, data):
         self.data = data
-        self._mutex = QtCore.QMutex()
         self.rumus_energi()
         self.status_gizi()
         self.info_gizi()
@@ -34,7 +33,6 @@ class Ui_MainWindow(object):
 
     #Basal Energy Expenditure
     def rumus_energi(self):
-        self._mutex.lock()
         self.data['tinggiBadan'] = float(f'{(0.73 * 2 * self.data["setengahDepa"]) + 0.43:.2f}')
         self.data["BEE"] = 0
 
@@ -48,10 +46,8 @@ class Ui_MainWindow(object):
 
         else:
             self.data['beratBadan'] = "0"
-        self._mutex.unlock()
 
     def status_gizi(self):
-        self._mutex.lock()
         if self.data["gender"] == "Laki-laki":
             self.data['statusGizi'] = self.data["lingkarLengan"] / STANDARLILALAKI[self.data["umur"]] * 100
 
@@ -60,48 +56,35 @@ class Ui_MainWindow(object):
 
         else:
             self.data['statusGizi'] = 0
-        self._mutex.unlock()
 
     def info_gizi(self):
-        self._mutex.lock()
         if self.data['statusGizi'] <= 70:
-            self._mutex.unlock()
             return "Gizi Buruk"
         elif self.data['statusGizi'] <= 84.9:
-            self._mutex.unlock()
             return "Gizi Kurang"
         elif self.data['statusGizi'] <= 109.9:
-            self._mutex.unlock()
             return "Gizi Baik"
         elif self.data['statusGizi'] <= 120:
-            self._mutex.unlock()
             return "Overweight"
         elif self.data['statusGizi'] > 120:
-            self._mutex.unlock()
             return "Obesitas"
 
     def publish(self, MainWindow):
-        self._mutex.lock()
         from qrConnect import Ui_MainWindow
         ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
-        self._mutex.unlock()
         MainWindow.show()
 
     def kembali(self, MainWindow):
-        self._mutex.lock()
         from menu import Ui_MainWindow
         ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
-        self._mutex.unlock()
         MainWindow.show()
 
     def menu(self, MainWindow):
-        self._mutex.lock()
         from awal import Ui_MainWindow
         ui = Ui_MainWindow()
         ui.setupUi(MainWindow)
-        self._mutex.unlock()
         MainWindow.show()
 
     def setupUi(self, MainWindow):
