@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
 
     #Basal Energy Expenditure
     def rumus_energi(self):
-        self.data['tinggiBadan'] = (2 * self.data["setengahDepa"])
+        self.data['tinggiBadan'] = (0.73 * 2 * self.data["setengahDepa"]) + 0.43
         if self.data["gender"] == "Laki-laki":
             self.data['beratBadan'] = -93.2 + (3.29 * self.data["lingkarLengan"]) +( 0.43 * self.data["tinggiBadan"])
             self.data["BEE"] = 66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (6.775 * self.data['umur'])
@@ -84,7 +84,7 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(600, 420)
+        MainWindow.resize(620, 480)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         font18 = QFont()
@@ -217,12 +217,12 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow({
-        "umur": 0,
-        "gender": "",
-        "lingkarLengan": 0,
-        "lingkarKepala": 0,
-        "setengahDepa": 0,
-        "suhu": 0,
+        "umur": 18,
+        "gender": "Laki-laki",
+        "lingkarLengan": 27,
+        "lingkarKepala": 54,
+        "setengahDepa": 84,
+        "suhu": 36.6,
     })
 
     ui.setupUi(MainWindow)
