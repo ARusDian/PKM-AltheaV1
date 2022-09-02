@@ -73,7 +73,6 @@ class Ui_MainWindow(object):
         self.data = data
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(640, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         self.bg = QtWidgets.QLabel(self.centralwidget)
@@ -102,7 +101,7 @@ class Ui_MainWindow(object):
         self.label_TokenValue.setFont(font_token)
         # self.pushButton_Simpan = PushableLabel(self.centralwidget)
         self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Simpan.setGeometry(QtCore.QRect(340, 270, 111, 41))
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(430, 270, 181, 61))
         self.pushButton_Simpan.setText("Kirim Data")
         self.pushButton_Simpan.setFont(font_btn)
         self.pushButton_Simpan.clicked.connect(lambda: self.publish())
@@ -112,7 +111,7 @@ class Ui_MainWindow(object):
 
         # self.pushButton_Kembali = PushableLabel(self.centralwidget)
         self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Kembali.setGeometry(QtCore.QRect(100, 270, 111, 41))
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(20, 270, 181, 61))
         self.pushButton_Kembali.setText("Kembali")
         self.pushButton_Kembali.setFont(font_btn)
         self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
@@ -122,7 +121,7 @@ class Ui_MainWindow(object):
 
         # self.pushButton_Awal = PushableLabel(self.centralwidget)
         self.pushButton_Awal = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Awal.setGeometry(QtCore.QRect(220, 270, 111, 41))
+        self.pushButton_Awal.setGeometry(QtCore.QRect(225, 270, 181, 61))
         self.pushButton_Awal.setText("Menu Utama")
         self.pushButton_Awal.setFont(font_btn)
         self.pushButton_Awal.clicked.connect(lambda: self.menu(MainWindow))

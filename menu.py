@@ -35,11 +35,10 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(640, 480)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         self.bg = QtWidgets.QLabel(self.centralwidget)
-        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 480))
+        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 420))
         self.bg.setPixmap(QPixmap("assets/bg-app.png"))
         self.bg.setScaledContents(True)
 

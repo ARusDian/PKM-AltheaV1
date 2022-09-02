@@ -88,7 +88,6 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(640, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         font18 = QFont()
