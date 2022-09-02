@@ -18,7 +18,6 @@ class Ui_MainWindow(object):
         self.i2c = io.I2C(board.SCL, board.SDA, frequency=100000)
         self.mlx = adafruit_mlx90614.MLX90614(self.i2c)
 
-
     def simpan(self):
         self.lineEdit_data.setText(f"{self.mlx.object_temperature}")
         self.data[self.currentData] = self.mlx.object_temperature
@@ -62,12 +61,16 @@ class Ui_MainWindow(object):
         self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
         self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
         self.pushButton_Kembali.setScaledContents(True)
+        self.pushButton_Kembali.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
 
         self.pushButton_Simpan = PushableLabel(self.centralwidget)
         self.pushButton_Simpan.setGeometry(QtCore.QRect(270, 300, 181, 61))
         self.pushButton_Simpan.onMousePressEvent = lambda x: self.simpan()
         self.pushButton_Simpan.setPixmap(QPixmap("assets/simpan.png"))
         self.pushButton_Simpan.setScaledContents(True)
+        self.pushButton_Simpan.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
 
         self.label_currentData = QtWidgets.QLabel(self.centralwidget)
         self.label_currentData.setGeometry(QtCore.QRect(80, 175, 210, 51))
@@ -83,6 +86,7 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

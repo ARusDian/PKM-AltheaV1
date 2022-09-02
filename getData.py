@@ -3,6 +3,8 @@ from PyQt5.QtGui import QPixmap, QFont
 
 from SensorModules import RotaryEncoder
 import pigpio
+
+
 # from components.PushableLabel import PushableLabel
 
 class Ui_MainWindow(object):
@@ -16,7 +18,7 @@ class Ui_MainWindow(object):
         # self.pi = pigpio.pi()
         # self.decoder = RotaryEncoder.decoder(self.pi, 6, 13, self.callback)
 
-    def callback(self,way):
+    def callback(self, way):
         self.pos += way
         # cm = pos + 3,0
         # self.data[self.currentData] = self.pos
@@ -67,6 +69,8 @@ class Ui_MainWindow(object):
         self.pushButton_Kembali.setGeometry(QtCore.QRect(60, 300, 181, 61))
         self.pushButton_Kembali.setText("Kembali")
         self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
+        self.pushButton_Kembali.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
         # self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
         # self.pushButton_Kembali.setScaledContents(True)
@@ -76,6 +80,8 @@ class Ui_MainWindow(object):
         self.pushButton_Simpan.setGeometry(QtCore.QRect(270, 300, 181, 61))
         self.pushButton_Simpan.setText("Simpan")
         self.pushButton_Simpan.clicked.connect(self.simpan)
+        self.pushButton_Simpan.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Simpan.onMousePressEvent = lambda x: self.simpan()
         # self.pushButton_Simpan.setPixmap(QPixmap("assets/simpan.png"))
         # self.pushButton_Simpan.setScaledContents(True)
@@ -94,9 +100,10 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow({},"lingkarLengan")
+    ui = Ui_MainWindow({}, "lingkarLengan")
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())

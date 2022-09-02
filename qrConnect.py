@@ -9,6 +9,7 @@ from PyQt5.QtGui import QPixmap
 
 from paho.mqtt import client as mqtt_client
 
+
 # from components.PushableLabel import PushableLabel
 
 
@@ -81,17 +82,17 @@ class Ui_MainWindow(object):
         self.bg.setScaledContents(True)
 
         self.label_QrToken = QtWidgets.QLabel(self.centralwidget)
-        self.label_QrToken.setGeometry(QtCore.QRect(10, -20, 300, 300))
+        self.label_QrToken.setGeometry(QtCore.QRect(10, -20, 400, 400))
         self.label_QrToken.setPixmap(QtGui.QPixmap.fromImage(ImageQt((qrcode.make(self.token)))))
         self.label_Token = QtWidgets.QLabel(self.centralwidget)
-        self.label_Token.setGeometry(QtCore.QRect(325, 150, 101, 21))
+        self.label_Token.setGeometry(QtCore.QRect(385, 150, 101, 21))
         self.label_Token.setText("Token")
         font_tokenlabel = QtGui.QFont()
         font_tokenlabel.setPointSize(12)
         font_tokenlabel.setBold(True)
         self.label_Token.setFont(font_tokenlabel)
         self.label_TokenValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_TokenValue.setGeometry(QtCore.QRect(300, 170, 150, 50))
+        self.label_TokenValue.setGeometry(QtCore.QRect(350, 170, 150, 50))
         self.label_TokenValue.setText(self.token)
         font_token = QtGui.QFont()
         font_token.setPointSize(18)
@@ -101,38 +102,41 @@ class Ui_MainWindow(object):
         self.label_TokenValue.setFont(font_token)
         # self.pushButton_Simpan = PushableLabel(self.centralwidget)
         self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Simpan.setGeometry(QtCore.QRect(430, 270, 181, 61))
+        self.pushButton_Simpan.setGeometry(QtCore.QRect(430, 320, 181, 61))
         self.pushButton_Simpan.setText("Kirim Data")
         self.pushButton_Simpan.setFont(font_btn)
         self.pushButton_Simpan.clicked.connect(lambda: self.publish())
+        self.pushButton_Simpan.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Simpan.onMousePressEvent = lambda _: self.publish()
         # self.pushButton_Simpan.setPixmap(QPixmap("assets/kirim.png"))
         # self.pushButton_Simpan.setScaledContents(True)
 
         # self.pushButton_Kembali = PushableLabel(self.centralwidget)
         self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Kembali.setGeometry(QtCore.QRect(20, 270, 181, 61))
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(20, 320, 181, 61))
         self.pushButton_Kembali.setText("Kembali")
         self.pushButton_Kembali.setFont(font_btn)
         self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
+        self.pushButton_Kembali.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
         # self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
         # self.pushButton_Kembali.setScaledContents(True)
 
         # self.pushButton_Awal = PushableLabel(self.centralwidget)
         self.pushButton_Awal = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Awal.setGeometry(QtCore.QRect(225, 270, 181, 61))
+        self.pushButton_Awal.setGeometry(QtCore.QRect(225, 320, 181, 61))
         self.pushButton_Awal.setText("Menu Utama")
         self.pushButton_Awal.setFont(font_btn)
         self.pushButton_Awal.clicked.connect(lambda: self.menu(MainWindow))
+        self.pushButton_Awal.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Awal.onMousePressEvent = lambda _: self.menu(MainWindow)
         # self.pushButton_Awal.setPixmap(QPixmap("assets/menu-utama.png"))
         # self.pushButton_Awal.setScaledContents(True)
 
         MainWindow.setCentralWidget(self.centralwidget)
-
-
-
 
 
 if __name__ == "__main__":

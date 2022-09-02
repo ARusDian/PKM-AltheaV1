@@ -15,11 +15,12 @@ STANDARLILALAKI = [1, 15.9, 16.2, 16.7, 17.1, 17.5, 17.9, 18.7, 19, 20, 21, 22.3
 
 # standar lila wanita tiap umur
 STANDARLILAWANITA = [1, 15.6, 16, 16.7, 16.9, 17.3, 17.6, 18.3, 19.5, 20, 21, 22.4,
-            23.7, 25.2, 25.2, 25.4, 25.8, 26.4, 25.8, 26.5, 26.5, 26.5, 26.5, 26.5, 26.5,
-            27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 29.9, 29.9, 29.9,
-            29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9,
-            29.9, 29.9, 29.9, 29.9, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3,
-            30.3, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9]
+                     23.7, 25.2, 25.2, 25.4, 25.8, 26.4, 25.8, 26.5, 26.5, 26.5, 26.5, 26.5, 26.5,
+                     27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 29.9, 29.9, 29.9,
+                     29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9,
+                     29.9, 29.9, 29.9, 29.9, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3,
+                     30.3, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9]
+
 
 class Ui_MainWindow(object):
     data = {}
@@ -30,15 +31,17 @@ class Ui_MainWindow(object):
         self.status_gizi()
         self.info_gizi()
 
-    #Basal Energy Expenditure
+    # Basal Energy Expenditure
     def rumus_energi(self):
         self.data['tinggiBadan'] = (0.73 * 2 * self.data["setengahDepa"]) + 0.43
         if self.data["gender"] == "Laki-laki":
-            self.data['beratBadan'] = -93.2 + (3.29 * self.data["lingkarLengan"]) +( 0.43 * self.data["tinggiBadan"])
-            self.data["BEE"] = 66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (6.775 * self.data['umur'])
+            self.data['beratBadan'] = -93.2 + (3.29 * self.data["lingkarLengan"]) + (0.43 * self.data["tinggiBadan"])
+            self.data["BEE"] = 66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (
+                        6.775 * self.data['umur'])
         elif self.data["gender"] == "Perempuan":
             self.data['beratBadan'] = -64.6 + 2.15 * self.data['lingkarLengan'] + 0.54 * self.data['tinggiBadan']
-            self.data["BEE"] = 655.1 + (9.563 * self.data['beratBadan']) + (1.850 * self.data['tinggiBadan']) - (4.676 * self.data['umur'])
+            self.data["BEE"] = 655.1 + (9.563 * self.data['beratBadan']) + (1.850 * self.data['tinggiBadan']) - (
+                        4.676 * self.data['umur'])
 
         else:
             self.data['beratBadan'] = "0"
@@ -84,7 +87,6 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(620, 480)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         font18 = QFont()
@@ -108,6 +110,8 @@ class Ui_MainWindow(object):
         self.pushButton_Simpan.setText("Simpan")
         self.pushButton_Simpan.setFont(font18)
         self.pushButton_Simpan.clicked.connect(lambda: self.publish(MainWindow))
+        self.pushButton_Simpan.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Simpan.onMousePressEvent = lambda _: self.publish(MainWindow)
         # self.pushButton_Simpan.setPixmap(QPixmap("assets/kirim.png"))
         # self.pushButton_Simpan.setScaledContents(True)
@@ -118,6 +122,8 @@ class Ui_MainWindow(object):
         self.pushButton_Kembali.setText("Kembali")
         self.pushButton_Kembali.setFont(font18)
         self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
+        self.pushButton_Kembali.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
         # self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
 
@@ -127,6 +133,8 @@ class Ui_MainWindow(object):
         self.pushButton_Awal.setText("Menu")
         self.pushButton_Awal.setFont(font18)
         self.pushButton_Awal.clicked.connect(lambda: self.menu(MainWindow))
+        self.pushButton_Awal.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Awal.onMousePressEvent = lambda _: self.menu(MainWindow)
         # self.pushButton_Awal.setPixmap(QPixmap("assets/menu-utama.png"))
         # self.pushButton_Awal.setScaledContents(True)
@@ -147,7 +155,7 @@ class Ui_MainWindow(object):
         self.label_BeratBadan.setFont(font18)
 
         self.label_TinggiBadan = QtWidgets.QLabel(self.centralwidget)
-        self.label_TinggiBadan.setGeometry(QtCore.QRect(70, 150, 171, 21))
+        self.label_TinggiBadan.setGeometry(QtCore.QRect(70, 150, 210, 21))
         self.label_TinggiBadan.setText("Estimasi Tinggi Badan : ")
         self.label_TinggiBadan.setFont(font18)
 
@@ -167,48 +175,47 @@ class Ui_MainWindow(object):
         self.label_Suhu.setFont(font18)
 
         self.label_UmurValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_UmurValue.setGeometry(QtCore.QRect(270, 60, 101, 21))
+        self.label_UmurValue.setGeometry(QtCore.QRect(300, 60, 101, 21))
         self.label_UmurValue.setText(f'{self.data["umur"]} Tahun')
         self.label_UmurValue.setFont(font18)
 
         self.label_GenderValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_GenderValue.setGeometry(QtCore.QRect(270, 90, 101, 21))
+        self.label_GenderValue.setGeometry(QtCore.QRect(300, 90, 101, 21))
         self.label_GenderValue.setText(f'{self.data["gender"]}')
         self.label_GenderValue.setFont(font18)
 
         self.label_BeratValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_BeratValue.setGeometry(QtCore.QRect(270, 120, 111, 21))
+        self.label_BeratValue.setGeometry(QtCore.QRect(300, 120, 111, 21))
         self.label_BeratValue.setText(f"{self.data['beratBadan']:.2f} Kg")
         self.label_BeratValue.setFont(font18)
 
         self.label_TinggiValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_TinggiValue.setGeometry(QtCore.QRect(270, 150, 101, 21))
+        self.label_TinggiValue.setGeometry(QtCore.QRect(300, 150, 101, 21))
         self.label_TinggiValue.setText(f"{self.data['tinggiBadan']:.2f} Cm")
         self.label_TinggiValue.setFont(font18)
 
         self.label_GiziValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_GiziValue.setGeometry(QtCore.QRect(270, 180, 101, 21))
+        self.label_GiziValue.setGeometry(QtCore.QRect(300, 180, 101, 21))
         self.label_GiziValue.setText(f"{self.info_gizi()}")
         self.label_GiziValue.setFont(font18)
 
         self.label_GiziStatue = QtWidgets.QLabel(self.centralwidget)
-        self.label_GiziStatue.setGeometry(QtCore.QRect(270, 210, 200, 21))
+        self.label_GiziStatue.setGeometry(QtCore.QRect(300, 210, 200, 21))
         self.label_GiziStatue.setText(f"{self.data['BEE'] :.2f}, kkal/hari")
         self.label_GiziStatue.setFont(font18)
 
         self.label_SuhuStatue = QtWidgets.QLabel(self.centralwidget)
-        self.label_SuhuStatue.setGeometry(QtCore.QRect(270, 240, 200, 21))
-        self.label_SuhuStatue.setText(f"{self.data['suhu'] } C")
+        self.label_SuhuStatue.setGeometry(QtCore.QRect(300, 240, 200, 21))
+        self.label_SuhuStatue.setText(f"{self.data['suhu']} C")
         self.label_SuhuStatue.setFont(font18)
 
-        self.label_Token= QtWidgets.QLabel(self.centralwidget)
+        self.label_Token = QtWidgets.QLabel(self.centralwidget)
         self.label_Token.setGeometry(QtCore.QRect(70, 280, 480, 21))
         self.label_Token.setText("Menuju Ke Halaman Selanjutnya untuk menampilkan Token")
         self.label_Token.setFont(font18)
 
-
-
         MainWindow.setCentralWidget(self.centralwidget)
+
 
 if __name__ == "__main__":
     pass

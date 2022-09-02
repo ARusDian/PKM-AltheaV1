@@ -2,11 +2,11 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QFont
 
+
 # from components.PushableLabel import PushableLabel
 
 
 class Ui_MainWindow(object):
-
     data = {
         "umur": 0,
         "gender": "",
@@ -94,11 +94,11 @@ class Ui_MainWindow(object):
 
         # self.pushButton_Next = PushableLabel(self.centralwidget)
         self.pushButton_Next = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Next.setGeometry(QtCore.QRect(320, 340, 181, 61))
+        self.pushButton_Next.setGeometry(QtCore.QRect(320, 320, 181, 61))
         self.pushButton_Next.setText("Selanjutnya")
         self.pushButton_Next.clicked.connect(lambda: self.toNext(MainWindow))
-        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600; border: 2 solid white;"
-                                        "font-size:20px;background-color:#03dbfc;")
+        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600; border: 2 solid "
+                                           "white;font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Next.setPixmap(QPixmap("assets/selanjutnya2.png"))
         # self.pushButton_Next.onMousePressEvent = lambda _: self.toNext(MainWindow)
         # self.pushButton_Next.setScaledContents(True)
@@ -106,8 +106,10 @@ class Ui_MainWindow(object):
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
