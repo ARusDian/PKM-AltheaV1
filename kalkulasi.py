@@ -33,16 +33,15 @@ class Ui_MainWindow(object):
 
     #Basal Energy Expenditure
     def rumus_energi(self):
-        self.data['tinggiBadan'] = float(f'{(0.73 * 2 * self.data["setengahDepa"]) + 0.43:.2f}')
+        self.data['tinggiBadan'] = (f'{(0.73 * 2 * self.data["setengahDepa"]) + 0.43:.2f}')
         self.data["BEE"] = 0
 
         if self.data["gender"] == "Laki-laki":
-            self.data['beratBadan'] = float(f'{-93.2 + (3.29 * self.data["lingkarLengan"]) +( 0.43 * self.data["tinggiBadan"]):.2f}')
-            self.data["BEE"] = float(f"{66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (6.775 * self.data['umur']):.2f}")
-
+            self.data['beratBadan'] = -93.2 + (3.29 * self.data["lingkarLengan"]) +( 0.43 * self.data["tinggiBadan"])
+            self.data["BEE"] = 66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (6.775 * self.data['umur'])
         elif self.data["gender"] == "Perempuan":
-            self.data['beratBadan'] = float(f"{-64.6 + 2.15 * self.data['lingkarLenga'] + 0.54 * self.data['tinggiBadan']:.2f}")
-            self.data["BEE"] = float(f"{655.1 + (9.563 * self.data['beratBadan']) + (1.850 * self.data['tinggiBadan']) - (4.676 * self.data['umur']):.2f}")
+            self.data['beratBadan'] = -64.6 + 2.15 * self.data['lingkarLengan'] + 0.54 * self.data['tinggiBadan']
+            self.data["BEE"] = 655.1 + (9.563 * self.data['beratBadan']) + (1.850 * self.data['tinggiBadan']) - (4.676 * self.data['umur'])
 
         else:
             self.data['beratBadan'] = "0"

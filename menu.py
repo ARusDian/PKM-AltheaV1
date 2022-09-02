@@ -66,7 +66,7 @@ class Ui_MainWindow(object):
 
         self.label_LingkarLengan = QtWidgets.QLabel(self.centralwidget)
         self.label_LingkarLengan.setGeometry(QtCore.QRect(360, 80, 371, 25))
-        self.label_LingkarLengan.setText(f'Lingkar Lengan: {self.data["lingkarLengan"]} cm')
+        self.label_LingkarLengan.setText(f'Lingkar Lengan: {self.data["lingkarLengan"]:.2f} cm')
         self.label_LingkarLengan.setFont(font16)
 
         # self.pushButton_Suhu = PushableLabel(self.centralwidget)
@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
 
         self.label_Suhu = QtWidgets.QLabel(self.centralwidget)
         self.label_Suhu.setGeometry(QtCore.QRect(360, 280, 371, 25))
-        self.label_Suhu.setText(f'Suhu Tubuh: {self.data["suhu"]} °C')
+        self.label_Suhu.setText(f'Suhu Tubuh: {self.data["suhu"]:.2f} °C')
         self.label_Suhu.setFont(font16)
 
         # self.pushButton_LingkarKepala = PushableLabel(self.centralwidget)

@@ -95,8 +95,10 @@ class Ui_MainWindow(object):
         # self.pushButton_Next = PushableLabel(self.centralwidget)
         self.pushButton_Next = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Next.setGeometry(QtCore.QRect(320, 340, 181, 61))
-        self.pushButton_Next.setText("Next")
+        self.pushButton_Next.setText("Selanjutnya")
         self.pushButton_Next.clicked.connect(lambda: self.toNext(MainWindow))
+        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600;"
+                                        "font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Next.setPixmap(QPixmap("assets/selanjutnya2.png"))
         # self.pushButton_Next.onMousePressEvent = lambda _: self.toNext(MainWindow)
         # self.pushButton_Next.setScaledContents(True)
