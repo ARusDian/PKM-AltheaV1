@@ -33,7 +33,7 @@ class Ui_MainWindow(object):
 
     #Basal Energy Expenditure
     def rumus_energi(self):
-        self.data['tinggiBadan'] = (f'{(0.73 * 2 * self.data["setengahDepa"]) + 0.43:.2f}')
+        self.data['tinggiBadan'] = (0.73 * 2 * self.data["setengahDepa"]) + 0.43
         self.data["BEE"] = 0
 
         if self.data["gender"] == "Laki-laki":
