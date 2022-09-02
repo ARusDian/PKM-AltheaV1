@@ -3,7 +3,6 @@ from PyQt5.QtGui import QPixmap, QFont
 
 from components.PushableLabel import PushableLabel
 
-
 class Ui_MainWindow(object):
     data = {}
 
@@ -35,11 +34,11 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(640, 480)
+        MainWindow.resize(640, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         self.bg = QtWidgets.QLabel(self.centralwidget)
-        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 480))
+        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 420))
         self.bg.setPixmap(QPixmap("assets/bg-app.png"))
         self.bg.setScaledContents(True)
 

@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def publish(self):
         result = self.client.publish(
             self.topic + self.token,
-            json.dumps(self.msgData),
+            json.dumps(self.data),
         )
 
     def connect_mqtt(self):
@@ -59,23 +59,14 @@ class Ui_MainWindow(object):
         self.token = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(8))
         self.client = self.connect_mqtt()
         self.client.loop_start()
-        self.msgData = {
-            'gender': 'Laki-laki',
-            'umur': 3,
-            'estimasi_tinggi_badan': 80,
-            'estimasi_berat_badan': 18,
-            'status_gizi': 'baik',
-            'lingkar_kepala': 45,
-            'lingkar_lengan': 34
-        }
         self.data = data
 
     def setupUi(self, MainWindow):
-        MainWindow.resize(480, 320)
+        MainWindow.resize(640, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         self.bg = QtWidgets.QLabel(self.centralwidget)
-        self.bg.setGeometry(QtCore.QRect(0, 0, 480, 320))
+        self.bg.setGeometry(QtCore.QRect(0, 0, 640, 420))
         self.bg.setPixmap(QPixmap("assets/bg-app.png"))
         self.bg.setScaledContents(True)
 
@@ -115,9 +106,6 @@ class Ui_MainWindow(object):
         self.pushButton_Awal.setScaledContents(True)
 
         MainWindow.setCentralWidget(self.centralwidget)
-
-
-
 
 
 if __name__ == "__main__":
