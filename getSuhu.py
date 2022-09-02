@@ -22,6 +22,7 @@ class Ui_MainWindow(object):
     def simpan(self):
         self.lineEdit_data.setText(f"{self.mlx.object_temperature}")
         self.data[self.currentData] = self.mlx.object_temperature
+        self.label_currentValue.setText(f"{self.mlx.object_temperature}")
 
     def kembali(self, MainWindow):
         from menu import Ui_MainWindow

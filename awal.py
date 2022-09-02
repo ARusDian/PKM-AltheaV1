@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
     def toNext(self, MainWindow):
         try:
             if self.radioButton_LakiLaki.isChecked():
-                self.data["gender"] = "Laki-Laki"
+                self.data["gender"] = "Laki-laki"
             elif self.radioButton_Perempuan.isChecked():
                 self.data["gender"] = "Perempuan"
             else:
@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
         self.pushButton_Next.setGeometry(QtCore.QRect(320, 340, 181, 61))
         self.pushButton_Next.setText("Selanjutnya")
         self.pushButton_Next.clicked.connect(lambda: self.toNext(MainWindow))
-        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600;"
+        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600; border: 2 solid white;"
                                         "font-size:20px;background-color:#03dbfc;")
         # self.pushButton_Next.setPixmap(QPixmap("assets/selanjutnya2.png"))
         # self.pushButton_Next.onMousePressEvent = lambda _: self.toNext(MainWindow)

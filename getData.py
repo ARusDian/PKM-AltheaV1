@@ -25,7 +25,8 @@ class Ui_MainWindow(object):
 
     def simpan(self):
         self.data[self.currentData] = self.pos
-        self.label_currentValue.setText(f"{self.pos}")
+        self.lineEdit_data.setText(str(self.pos))
+        self.label_currentValue.setText(f"{self.lineEdit_data.text()}")
 
     def kembali(self, MainWindow):
         from menu import Ui_MainWindow
@@ -49,6 +50,7 @@ class Ui_MainWindow(object):
         self.lineEdit_data = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_data.setGeometry(QtCore.QRect(280, 100, 241, 51))
         self.lineEdit_data.setText("0")
+        self.lineEdit_data.setFont(font16)
 
         self.label_judul = QtWidgets.QLabel(self.centralwidget)
         self.label_judul.setGeometry(QtCore.QRect(200, 30, 300, 41))

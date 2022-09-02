@@ -30,12 +30,9 @@ class Ui_MainWindow(object):
         self.status_gizi()
         self.info_gizi()
 
-
     #Basal Energy Expenditure
     def rumus_energi(self):
-        self.data['tinggiBadan'] = (0.73 * 2 * self.data["setengahDepa"]) + 0.43
-        self.data["BEE"] = 0
-
+        self.data['tinggiBadan'] = (2 * self.data["setengahDepa"])
         if self.data["gender"] == "Laki-laki":
             self.data['beratBadan'] = -93.2 + (3.29 * self.data["lingkarLengan"]) +( 0.43 * self.data["tinggiBadan"])
             self.data["BEE"] = 66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (6.775 * self.data['umur'])
@@ -87,6 +84,7 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
+        MainWindow.resize(600, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         font18 = QFont()
@@ -180,12 +178,12 @@ class Ui_MainWindow(object):
 
         self.label_BeratValue = QtWidgets.QLabel(self.centralwidget)
         self.label_BeratValue.setGeometry(QtCore.QRect(270, 120, 111, 21))
-        self.label_BeratValue.setText(f"{self.data['beratBadan']} Kg")
+        self.label_BeratValue.setText(f"{self.data['beratBadan']:.2f} Kg")
         self.label_BeratValue.setFont(font18)
 
         self.label_TinggiValue = QtWidgets.QLabel(self.centralwidget)
         self.label_TinggiValue.setGeometry(QtCore.QRect(270, 150, 101, 21))
-        self.label_TinggiValue.setText(f"{self.data['tinggiBadan']} Cm")
+        self.label_TinggiValue.setText(f"{self.data['tinggiBadan']:.2f} Cm")
         self.label_TinggiValue.setFont(font18)
 
         self.label_GiziValue = QtWidgets.QLabel(self.centralwidget)
@@ -220,7 +218,7 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow({
         "umur": 0,
-        "gender": "Laki-laki",
+        "gender": "",
         "lingkarLengan": 0,
         "lingkarKepala": 0,
         "setengahDepa": 0,
