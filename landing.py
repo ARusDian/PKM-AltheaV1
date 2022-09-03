@@ -11,6 +11,7 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def toExit(self, MainWindow):
+        import sys
         sys.exit(MainWindow)
 
     def setupUi(self, MainWindow):
