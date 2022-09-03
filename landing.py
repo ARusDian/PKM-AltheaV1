@@ -1,14 +1,9 @@
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QFont, QIcon
-import sys
-
-# from components.PushableLabel import PushableLabel
-
 
 
 class Ui_MainWindow(object):
-#
+
     def toNext(self, MainWindow):
         from awal import Ui_MainWindow
         ui = Ui_MainWindow()
@@ -41,24 +36,24 @@ class Ui_MainWindow(object):
         self.label_Umur.setText("Selamat Datang Di Alat Althea")
         self.label_Umur.setFont(font16)
 
-        # self.pushButton_Next = PushableLabel(self.centralwidget)
         self.pushButton_Next = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Next.setGeometry(QtCore.QRect(350, 280, 181, 61))
+        self.pushButton_Next.setGeometry(QtCore.QRect(350, 320, 181, 61))
         self.pushButton_Next.setText("Mulai")
         self.pushButton_Next.clicked.connect(lambda: self.toNext(MainWindow))
-        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600; border: 2 solid "
-                                           "white;font-size:20px;background-color:#03dbfc;")
+        self.pushButton_Next.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid "
+            "white;font-size:20px;background-color:#03dbfc;"
+        )
 
-        self.pushButton_Next = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Next.setGeometry(QtCore.QRect(120, 280, 181, 61))
-        self.pushButton_Next.setText("Keluar")
-        self.pushButton_Next.clicked.connect(lambda: self.toExit(MainWindow))
-        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600; border: 2 solid "
-                                           "white;font-size:20px;background-color:#F73838;")
+        self.pushButton_Exit = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_Exit.setGeometry(QtCore.QRect(120, 320, 181, 61))
+        self.pushButton_Exit.setText("Keluar")
+        self.pushButton_Exit.clicked.connect(lambda: self.toExit(MainWindow))
+        self.pushButton_Exit.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid "
+            "white;font-size:20px;background-color:#F73838;"
+        )
 
-        # self.pushButton_Next.setPixmap(QPixmap("assets/selanjutnya2.png"))
-        # self.pushButton_Next.onMousePressEvent = lambda _: self.toNext(MainWindow)
-        # self.pushButton_Next.setScaledContents(True)
         MainWindow.setCentralWidget(self.centralwidget)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

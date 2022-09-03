@@ -32,6 +32,12 @@ class Ui_MainWindow(object):
             ui.setupUi(MainWindow)
             MainWindow.show()
 
+    def kembali(self, MainWindow):
+        from landing import Ui_MainWindow
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+
     def Up(self):
         self.data["umur"] += 1
         self.label_NilaiUmur.setText(str(self.data["umur"]))
@@ -57,54 +63,57 @@ class Ui_MainWindow(object):
         self.label_JenisKelamin.setFont(font16)
 
         self.label_Umur = QtWidgets.QLabel(self.centralwidget)
-        self.label_Umur.setGeometry(QtCore.QRect(305, 20, 91, 16))
+        self.label_Umur.setGeometry(QtCore.QRect(290, 20, 91, 16))
         self.label_Umur.setText("Umur")
         self.label_Umur.setFont(font16)
 
         self.radioButton_LakiLaki = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_LakiLaki.setGeometry(QtCore.QRect(180, 260, 120, 60))
         self.radioButton_LakiLaki.setText("Laki-laki")
+        self.radioButton_LakiLaki.setFont(font16)
         self.radioButton_Perempuan = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_Perempuan.setGeometry(QtCore.QRect(360, 260, 120, 60))
         self.radioButton_Perempuan.setText("Perempuan")
+        self.radioButton_Perempuan.setFont(font16)
 
-        # self.pushButton_UP = PushableLabel(self.centralwidget)
         self.pushButton_UP = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_UP.setGeometry(QtCore.QRect(360, 140, 90, 36))
         self.pushButton_UP.setText(">")
         self.pushButton_UP.clicked.connect(self.Up)
-        # self.pushButton_UP.onMousePressEvent = lambda _: self.Up()
-        # self.pushButton_UP.setPixmap(QPixmap("assets/arrow-right.png"))
-        # self.pushButton_UP.setScaledContents(True)
 
-        # self.pushButton_DOWN = PushableLabel(self.centralwidget)
         self.pushButton_DOWN = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_DOWN.setGeometry(QtCore.QRect(180, 140, 90, 36))
         self.pushButton_DOWN.setText("<")
         self.pushButton_DOWN.clicked.connect(self.Down)
-        # self.pushButton_DOWN.onMousePressEvent = lambda _: self.Down()
-        # self.pushButton_DOWN.setPixmap(QPixmap("assets/arrow-left.png"))
-        # self.pushButton_DOWN.setScaledContents(True)
 
         self.label_NilaiUmur = QtWidgets.QLabel(self.centralwidget)
-        self.label_NilaiUmur.setGeometry(QtCore.QRect(270, 110, 110, 20))
+        self.label_NilaiUmur.setGeometry(QtCore.QRect(260, 100, 110, 20))
         self.label_NilaiUmur.setText("0")
         self.label_NilaiUmur.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_NilaiUmur.setFont(font16)
 
-        # self.pushButton_Next = PushableLabel(self.centralwidget)
         self.pushButton_Next = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Next.setGeometry(QtCore.QRect(320, 320, 181, 61))
+        self.pushButton_Next.setGeometry(QtCore.QRect(360, 320, 181, 61))
         self.pushButton_Next.setText("Selanjutnya")
         self.pushButton_Next.clicked.connect(lambda: self.toNext(MainWindow))
-        self.pushButton_Next.setStyleSheet("border-radius : 28; color:white;font-weight: 600; border: 2 solid "
-                                           "white;font-size:20px;background-color:#03dbfc;")
-        # self.pushButton_Next.setPixmap(QPixmap("assets/selanjutnya2.png"))
-        # self.pushButton_Next.onMousePressEvent = lambda _: self.toNext(MainWindow)
-        # self.pushButton_Next.setScaledContents(True)
+        self.pushButton_Next.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid "
+            "white;font-size:20px;background-color:#03dbfc;"
+        )
+
+        self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_Kembali.setGeometry(QtCore.QRect(100, 320, 181, 61))
+        self.pushButton_Kembali.setText("Kembali")
+        self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
+        self.pushButton_Kembali.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600;"
+            "border: 2 solid white;font-size:20px;background-color:#03dbfc;"
+        )
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
 
 if __name__ == "__main__":
     import sys

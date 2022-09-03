@@ -1,25 +1,26 @@
-from typing import Union, Any
-
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QPixmap, QFont
 
-# from components.PushableLabel import PushableLabel
 
 # standar lila laki laki tiap umur
-STANDARLILALAKI = [1, 15.9, 16.2, 16.7, 17.1, 17.5, 17.9, 18.7, 19, 20, 21, 22.3,
-                   23.2, 24.7, 25.3, 26.4, 27.8, 28.5, 29.7, 30.8, 30.8, 30.8, 30.8, 30.8, 30.8,
-                   31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 32.6, 32.6, 32.6,
-                   32.6, 32.6, 32.6, 32.6, 32.6, 32.6, 32.6, 32.2, 32.2, 32.2, 32.2, 32.2, 32.2,
-                   32.2, 32.2, 32.2, 32.2, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7,
-                   31.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7]
+STANDARLILALAKI = [
+    1, 15.9, 16.2, 16.7, 17.1, 17.5, 17.9, 18.7, 19, 20, 21, 22.3,
+    23.2, 24.7, 25.3, 26.4, 27.8, 28.5, 29.7, 30.8, 30.8, 30.8, 30.8, 30.8, 30.8,
+    31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 31.9, 32.6, 32.6, 32.6,
+    32.6, 32.6, 32.6, 32.6, 32.6, 32.6, 32.6, 32.2, 32.2, 32.2, 32.2, 32.2, 32.2,
+    32.2, 32.2, 32.2, 32.2, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7, 31.7,
+    31.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7, 30.7
+]
 
 # standar lila wanita tiap umur
-STANDARLILAWANITA = [1, 15.6, 16, 16.7, 16.9, 17.3, 17.6, 18.3, 19.5, 20, 21, 22.4,
-                     23.7, 25.2, 25.2, 25.4, 25.8, 26.4, 25.8, 26.5, 26.5, 26.5, 26.5, 26.5, 26.5,
-                     27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 29.9, 29.9, 29.9,
-                     29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9,
-                     29.9, 29.9, 29.9, 29.9, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3,
-                     30.3, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9]
+STANDARLILAWANITA = [
+    1, 15.6, 16, 16.7, 16.9, 17.3, 17.6, 18.3, 19.5, 20, 21, 22.4,
+    23.7, 25.2, 25.2, 25.4, 25.8, 26.4, 25.8, 26.5, 26.5, 26.5, 26.5, 26.5, 26.5,
+    27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 27.7, 29.9, 29.9, 29.9,
+    29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9,
+    29.9, 29.9, 29.9, 29.9, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3, 30.3,
+    30.3, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9
+]
 
 
 class Ui_MainWindow(object):
@@ -37,11 +38,11 @@ class Ui_MainWindow(object):
         if self.data["gender"] == "Laki-laki":
             self.data['beratBadan'] = -93.2 + (3.29 * self.data["lingkarLengan"]) + (0.43 * self.data["tinggiBadan"])
             self.data["BEE"] = 66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (
-                        6.775 * self.data['umur'])
+                    6.775 * self.data['umur'])
         elif self.data["gender"] == "Perempuan":
             self.data['beratBadan'] = -64.6 + 2.15 * self.data['lingkarLengan'] + 0.54 * self.data['tinggiBadan']
             self.data["BEE"] = 655.1 + (9.563 * self.data['beratBadan']) + (1.850 * self.data['tinggiBadan']) - (
-                        4.676 * self.data['umur'])
+                    4.676 * self.data['umur'])
 
         else:
             self.data['beratBadan'] = "0"
@@ -100,44 +101,39 @@ class Ui_MainWindow(object):
         self.bg.setScaledContents(True)
 
         self.label_Pilih = QtWidgets.QLabel(self.centralwidget)
-        self.label_Pilih.setGeometry(QtCore.QRect(270, 10, 125, 35))
-        self.label_Pilih.setText("Perhitungan")
+        self.label_Pilih.setGeometry(QtCore.QRect(220, 10, 170, 35))
+        self.label_Pilih.setText("Hasil Perhitungan")
         self.label_Pilih.setFont(font22)
 
-        # self.pushButton_Simpan = PushableLabel(self.centralwidget)
         self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Simpan.setGeometry(QtCore.QRect(430, 320, 181, 61))
         self.pushButton_Simpan.setText("Simpan")
         self.pushButton_Simpan.setFont(font18)
         self.pushButton_Simpan.clicked.connect(lambda: self.publish(MainWindow))
         self.pushButton_Simpan.setStyleSheet(
-            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
-        # self.pushButton_Simpan.onMousePressEvent = lambda _: self.publish(MainWindow)
-        # self.pushButton_Simpan.setPixmap(QPixmap("assets/kirim.png"))
-        # self.pushButton_Simpan.setScaledContents(True)
+            "border-radius : 28; color:white;font-weight: 600;"
+            "border: 2 solid white;font-size:20px;background-color:#03dbfc;"
+        )
 
-        # self.pushButton_Kembali = PushableLabel(self.centralwidget)
         self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Kembali.setGeometry(QtCore.QRect(20, 320, 181, 61))
         self.pushButton_Kembali.setText("Kembali")
         self.pushButton_Kembali.setFont(font18)
         self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
         self.pushButton_Kembali.setStyleSheet(
-            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
-        # self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
-        # self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
+            "border-radius : 28; color:white;font-weight: 600;"
+            "border: 2 solid white;font-size:20px;background-color:#03dbfc;"
+        )
 
-        # self.pushButton_Awal = PushableLabel(self.centralwidget)
         self.pushButton_Awal = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Awal.setGeometry(QtCore.QRect(225, 320, 181, 61))
         self.pushButton_Awal.setText("Menu")
         self.pushButton_Awal.setFont(font18)
         self.pushButton_Awal.clicked.connect(lambda: self.menu(MainWindow))
         self.pushButton_Awal.setStyleSheet(
-            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
-        # self.pushButton_Awal.onMousePressEvent = lambda _: self.menu(MainWindow)
-        # self.pushButton_Awal.setPixmap(QPixmap("assets/menu-utama.png"))
-        # self.pushButton_Awal.setScaledContents(True)
+            "border-radius : 28; color:white;font-weight: 600;"
+            "border: 2 solid white;font-size:20px;background-color:#03dbfc;"
+        )
 
         self.label_Umur = QtWidgets.QLabel(self.centralwidget)
         self.label_Umur.setGeometry(QtCore.QRect(70, 60, 171, 21))
@@ -210,7 +206,7 @@ class Ui_MainWindow(object):
         self.label_SuhuStatue.setFont(font18)
 
         self.label_Token = QtWidgets.QLabel(self.centralwidget)
-        self.label_Token.setGeometry(QtCore.QRect(70, 280, 480, 21))
+        self.label_Token.setGeometry(QtCore.QRect(70, 280, 480, 30))
         self.label_Token.setText("Menuju Ke Halaman Selanjutnya untuk menampilkan Token")
         self.label_Token.setFont(font18)
 

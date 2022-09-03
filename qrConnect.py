@@ -10,9 +10,6 @@ from PyQt5.QtGui import QPixmap
 from paho.mqtt import client as mqtt_client
 
 
-# from components.PushableLabel import PushableLabel
-
-
 class Ui_MainWindow(object):
     data = {}
     broker = 'broker.emqx.io'
@@ -81,7 +78,7 @@ class Ui_MainWindow(object):
         font_tokenlabel.setBold(True)
         self.label_Token.setFont(font_tokenlabel)
         self.label_TokenValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_TokenValue.setGeometry(QtCore.QRect(350, 170, 200, 50))
+        self.label_TokenValue.setGeometry(QtCore.QRect(350, 170, 250, 70))
         self.label_TokenValue.setText(self.token)
         font_token = QtGui.QFont()
         font_token.setPointSize(18)
@@ -95,26 +92,29 @@ class Ui_MainWindow(object):
         self.pushButton_Simpan.setFont(font_btn)
         self.pushButton_Simpan.clicked.connect(lambda: self.publish())
         self.pushButton_Simpan.setStyleSheet(
-            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
+            "border-radius : 28; color:white;font-weight: 600;"
+            "border: 2 solid white;font-size:20px;background-color:#03dbfc;"
+        )
+
         self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Kembali.setGeometry(QtCore.QRect(20, 320, 181, 61))
         self.pushButton_Kembali.setText("Kembali")
         self.pushButton_Kembali.setFont(font_btn)
         self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
         self.pushButton_Kembali.setStyleSheet(
-            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
+            "border-radius : 28; color:white;font-weight: 600;"
+            "border: 2 solid white;font-size:20px;background-color:#03dbfc;"
+        )
 
-        # self.pushButton_Awal = PushableLabel(self.centralwidget)
         self.pushButton_Awal = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Awal.setGeometry(QtCore.QRect(225, 320, 181, 61))
         self.pushButton_Awal.setText("Menu Utama")
         self.pushButton_Awal.setFont(font_btn)
         self.pushButton_Awal.clicked.connect(lambda: self.menu(MainWindow))
         self.pushButton_Awal.setStyleSheet(
-            "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
-        # self.pushButton_Awal.onMousePressEvent = lambda _: self.menu(MainWindow)
-        # self.pushButton_Awal.setPixmap(QPixmap("assets/menu-utama.png"))
-        # self.pushButton_Awal.setScaledContents(True)
+            "border-radius : 28; color:white;font-weight: 600;"
+            "border: 2 solid white;font-size:20px;background-color:#03dbfc;"
+        )
 
         MainWindow.setCentralWidget(self.centralwidget)
 
