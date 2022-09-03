@@ -90,7 +90,7 @@ class Ui_MainWindow(object):
         # self.pushButton_Suhu.setScaledContents(True)
 
         self.label_Suhu = QtWidgets.QLabel(self.centralwidget)
-        self.label_Suhu.setGeometry(QtCore.QRect(360, 290, 371, 25))
+        self.label_Suhu.setGeometry(QtCore.QRect(360, 260, 371, 25))
         self.label_Suhu.setText(f'Suhu Tubuh: {self.data["suhu"]:.2f} °C')
         self.label_Suhu.setFont(font16)
 
@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
 
         self.label_SetengahDepa = QtWidgets.QLabel(self.centralwidget)
         self.label_SetengahDepa.setGeometry(QtCore.QRect(360, 190, 371, 25))
-        self.label_SetengahDepa.setText(f'Setengah Depan: {self.data["setengahDepa"]} cm')
+        self.label_SetengahDepa.setText(f'Setengah Depa: {self.data["setengahDepa"]} cm')
         self.label_SetengahDepa.setFont(font16)
 
         # self.pushButton_Simpan = PushableLabel(self.centralwidget)

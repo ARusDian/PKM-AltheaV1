@@ -106,7 +106,6 @@ class Ui_MainWindow(object):
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
 if __name__ == "__main__":
     import sys
 

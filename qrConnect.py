@@ -44,33 +44,22 @@ class Ui_MainWindow(object):
 
     def menu(self, MainWindow):
         self.client.loop_stop()
-        from awal import Ui_MainWindow
+        from landing import Ui_MainWindow
         ui = Ui_MainWindow()
         ui.setupUi(MainWindow)
         MainWindow.show()
 
     def kembali(self, MainWindow):
-        # self._mutex.lock()
         self.client.loop_stop()
         from kalkulasi import Ui_MainWindow
         ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
-        # self._mutex.unlock()
         MainWindow.show()
 
     def __init__(self, data):
         self.token = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(8))
         self.client = self.connect_mqtt()
         self.client.loop_start()
-        # self.msgData = {
-        #     'gender': 'Laki-laki',
-        #     'umur': 3,
-        #     'estimasi_tinggi_badan': 80,
-        #     'estimasi_berat_badan': 18,
-        #     'status_gizi': 'baik',
-        #     'lingkar_kepala': 45,
-        #     'lingkar_lengan': 34
-        # }
         self.data = data
 
     def setupUi(self, MainWindow):
@@ -92,7 +81,7 @@ class Ui_MainWindow(object):
         font_tokenlabel.setBold(True)
         self.label_Token.setFont(font_tokenlabel)
         self.label_TokenValue = QtWidgets.QLabel(self.centralwidget)
-        self.label_TokenValue.setGeometry(QtCore.QRect(350, 170, 150, 50))
+        self.label_TokenValue.setGeometry(QtCore.QRect(350, 170, 200, 50))
         self.label_TokenValue.setText(self.token)
         font_token = QtGui.QFont()
         font_token.setPointSize(18)
@@ -100,7 +89,6 @@ class Ui_MainWindow(object):
         font_btn = QtGui.QFont()
         font_btn.setPointSize(14)
         self.label_TokenValue.setFont(font_token)
-        # self.pushButton_Simpan = PushableLabel(self.centralwidget)
         self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Simpan.setGeometry(QtCore.QRect(430, 320, 181, 61))
         self.pushButton_Simpan.setText("Kirim Data")
@@ -108,11 +96,6 @@ class Ui_MainWindow(object):
         self.pushButton_Simpan.clicked.connect(lambda: self.publish())
         self.pushButton_Simpan.setStyleSheet(
             "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
-        # self.pushButton_Simpan.onMousePressEvent = lambda _: self.publish()
-        # self.pushButton_Simpan.setPixmap(QPixmap("assets/kirim.png"))
-        # self.pushButton_Simpan.setScaledContents(True)
-
-        # self.pushButton_Kembali = PushableLabel(self.centralwidget)
         self.pushButton_Kembali = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Kembali.setGeometry(QtCore.QRect(20, 320, 181, 61))
         self.pushButton_Kembali.setText("Kembali")
@@ -120,9 +103,6 @@ class Ui_MainWindow(object):
         self.pushButton_Kembali.clicked.connect(lambda: self.kembali(MainWindow))
         self.pushButton_Kembali.setStyleSheet(
             "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
-        # self.pushButton_Kembali.onMousePressEvent = lambda _: self.kembali(MainWindow)
-        # self.pushButton_Kembali.setPixmap(QPixmap("assets/kembali.png"))
-        # self.pushButton_Kembali.setScaledContents(True)
 
         # self.pushButton_Awal = PushableLabel(self.centralwidget)
         self.pushButton_Awal = QtWidgets.QPushButton(self.centralwidget)
