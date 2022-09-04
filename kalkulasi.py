@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def menu(self, MainWindow):
-        from awal import Ui_MainWindow
+        from landing import Ui_MainWindow
         ui = Ui_MainWindow()
         ui.setupUi(MainWindow)
         MainWindow.show()
@@ -196,7 +196,7 @@ class Ui_MainWindow(object):
 
         self.label_GiziValue = QtWidgets.QLabel(self.centralwidget)
         self.label_GiziValue.setGeometry(QtCore.QRect(300, 180, 101, 21))
-        self.label_GiziValue.setText(f"{self.info_gizi()}")
+        self.label_GiziValue.setText(f"{self.info_gizi()} - [{self.data['statusGizi']}]")
         self.label_GiziValue.setFont(font18)
 
         self.label_GiziStatue = QtWidgets.QLabel(self.centralwidget)
