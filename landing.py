@@ -25,6 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setWindowIcon(QIcon("assets/icon.ico"))
         MainWindow.setFixedSize(640, 420)
+        MainWindow.setWindowTitle("Althea App")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.bg = QtWidgets.QLabel(self.centralwidget)
         self.bg.setGeometry(QtCore.QRect(0, 0, 640, 420))

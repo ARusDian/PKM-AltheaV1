@@ -95,7 +95,7 @@ class Ui_MainWindow(object):
 
         self.label_LingkarKepala = QtWidgets.QLabel(self.centralwidget)
         self.label_LingkarKepala.setGeometry(QtCore.QRect(360, 120, 371, 25))
-        self.label_LingkarKepala.setText(f'Lingkar Kepala: {self.data["lingkarKepala"]} cm')
+        self.label_LingkarKepala.setText(f'Lingkar Kepala: {self.data["lingkarKepala"]:.2f} cm')
         self.label_LingkarKepala.setFont(font16)
 
         self.pushButton_SetengahDepa = QtWidgets.QPushButton(self.centralwidget)
@@ -107,7 +107,7 @@ class Ui_MainWindow(object):
 
         self.label_SetengahDepa = QtWidgets.QLabel(self.centralwidget)
         self.label_SetengahDepa.setGeometry(QtCore.QRect(360, 190, 371, 25))
-        self.label_SetengahDepa.setText(f'Panjang Ulna: {self.data["panjangUlna"]} cm')
+        self.label_SetengahDepa.setText(f'Panjang Ulna: {self.data["panjangUlna"]:.2f} cm')
         self.label_SetengahDepa.setFont(font16)
 
         self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
@@ -147,7 +147,7 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow({
         "umur": 0,
-        "gender": "",
+        "gender": "Laki-laki",
         "lingkarKepala": 0,
         "lingkarLengan": 0,
         "panjangUlna": 0,

@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QPixmap, QFont
+from PyQt5.QtGui import QPixmap, QFont, QIcon
 
 
 # standar lila laki laki tiap umur
@@ -89,6 +89,9 @@ class Ui_MainWindow(object):
         MainWindow.show()
 
     def setupUi(self, MainWindow):
+        MainWindow.setWindowIcon(QIcon("assets/icon.ico"))
+        MainWindow.setFixedSize(640, 420)
+        MainWindow.setWindowTitle("Althea App")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         font18 = QFont()
@@ -203,7 +206,7 @@ class Ui_MainWindow(object):
 
         self.label_SuhuStatue = QtWidgets.QLabel(self.centralwidget)
         self.label_SuhuStatue.setGeometry(QtCore.QRect(300, 240, 200, 21))
-        self.label_SuhuStatue.setText(f"{self.data['suhu']} C")
+        self.label_SuhuStatue.setText(f"{self.data['suhu']:.2f} C")
         self.label_SuhuStatue.setFont(font18)
 
         self.label_Token = QtWidgets.QLabel(self.centralwidget)
@@ -221,12 +224,12 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow({
-        "umur": 18,
+        "umur": 21,
         "gender": "Laki-laki",
-        "lingkarLengan": 27,
-        "lingkarKepala": 54,
-        "panjangUlna": 27.6,
-        "suhu": 36.6,
+        "lingkarLengan": 19.45,
+        "lingkarKepala": 0,
+        "panjangUlna": 24.902,
+        "suhu": 35.27,
     })
 
     ui.setupUi(MainWindow)
