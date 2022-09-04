@@ -34,12 +34,13 @@ class Ui_MainWindow(object):
 
     # Basal Energy Expenditure
     def rumus_energi(self):
-        self.data['tinggiBadan'] = (0.73 * 2 * self.data["setengahDepa"]) + 0.43
         if self.data["gender"] == "Laki-laki":
+            self.data['tinggiBadan'] = 97.252 + (2.645 * self.data['panjangUlna'])
             self.data['beratBadan'] = -93.2 + (3.29 * self.data["lingkarLengan"]) + (0.43 * self.data["tinggiBadan"])
             self.data["BEE"] = 66.5 + (13.75 * self.data['beratBadan']) + (5.003 * self.data['tinggiBadan']) - (
                     6.775 * self.data['umur'])
         elif self.data["gender"] == "Perempuan":
+            self.data['tinggiBadan'] = 68.777 + (3.536 * self.data['panjangUlna'])
             self.data['beratBadan'] = -64.6 + 2.15 * self.data['lingkarLengan'] + 0.54 * self.data['tinggiBadan']
             self.data["BEE"] = 655.1 + (9.563 * self.data['beratBadan']) + (1.850 * self.data['tinggiBadan']) - (
                     4.676 * self.data['umur'])
@@ -224,7 +225,7 @@ if __name__ == "__main__":
         "gender": "Laki-laki",
         "lingkarLengan": 27,
         "lingkarKepala": 54,
-        "setengahDepa": 84,
+        "panjangUlna": 27.6,
         "suhu": 36.6,
     })
 

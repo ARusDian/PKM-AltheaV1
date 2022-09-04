@@ -12,7 +12,7 @@ class Ui_MainWindow(object):
         "gender": "",
         "lingkarLengan": 0,
         "lingkarKepala": 0,
-        "setengahDepa": 0,
+        "panjangUlna": 0,
         "suhu": 0,
     }
 
@@ -40,12 +40,12 @@ class Ui_MainWindow(object):
 
     def Up(self):
         self.data["umur"] += 1
-        self.label_NilaiUmur.setText(str(self.data["umur"]))
+        self.label_NilaiUmur.setText(f'{self.data["umur"]} Tahun')
 
     def Down(self):
         if self.data["umur"] > 0:
             self.data["umur"] -= 1
-            self.label_NilaiUmur.setText(str(self.data["umur"]))
+            self.label_NilaiUmur.setText(f'{self.data["umur"]} Tahun')
 
     def setupUi(self, MainWindow):
         MainWindow.setFixedSize(640, 420)
@@ -80,15 +80,23 @@ class Ui_MainWindow(object):
         self.pushButton_UP.setGeometry(QtCore.QRect(360, 140, 90, 36))
         self.pushButton_UP.setText(">")
         self.pushButton_UP.clicked.connect(self.Up)
+        self.pushButton_UP.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid "
+            "white;font-size:20px;background-color:#03dbfc;"
+        )
 
         self.pushButton_DOWN = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_DOWN.setGeometry(QtCore.QRect(180, 140, 90, 36))
         self.pushButton_DOWN.setText("<")
         self.pushButton_DOWN.clicked.connect(self.Down)
+        self.pushButton_DOWN.setStyleSheet(
+            "border-radius : 28; color:white;font-weight: 600; border: 2 solid "
+            "white;font-size:20px;background-color:#03dbfc;"
+        )
 
         self.label_NilaiUmur = QtWidgets.QLabel(self.centralwidget)
         self.label_NilaiUmur.setGeometry(QtCore.QRect(260, 100, 110, 20))
-        self.label_NilaiUmur.setText("0")
+        self.label_NilaiUmur.setText(f'{self.data["umur"]} Tahun')
         self.label_NilaiUmur.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_NilaiUmur.setFont(font16)
 

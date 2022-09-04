@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def resetData(self):
         self.data["lingkarLengan"] = 0
         self.data["lingkarKepala"] = 0
-        self.data["setengahDepa"] = 0
+        self.data["panjangUlna"] = 0
         self.data["suhu"] = 0
 
     def kalkulasiData(self, MainWindow):
@@ -100,14 +100,14 @@ class Ui_MainWindow(object):
 
         self.pushButton_SetengahDepa = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_SetengahDepa.setGeometry(QtCore.QRect(80, 180, 181, 61))
-        self.pushButton_SetengahDepa.setText("Setengah Depa")
-        self.pushButton_SetengahDepa.clicked.connect(lambda: self.pengambilanData(MainWindow, "setengahDepa"))
+        self.pushButton_SetengahDepa.setText("Panjang Ulna")
+        self.pushButton_SetengahDepa.clicked.connect(lambda: self.pengambilanData(MainWindow, "panjangUlna"))
         self.pushButton_SetengahDepa.setStyleSheet(
             "border-radius : 28; color:white;font-weight: 600; border: 2 solid white;font-size:20px;background-color:#03dbfc;")
 
         self.label_SetengahDepa = QtWidgets.QLabel(self.centralwidget)
         self.label_SetengahDepa.setGeometry(QtCore.QRect(360, 190, 371, 25))
-        self.label_SetengahDepa.setText(f'Setengah Depa: {self.data["setengahDepa"]} cm')
+        self.label_SetengahDepa.setText(f'Panjang Ulna: {self.data["panjangUlna"]} cm')
         self.label_SetengahDepa.setFont(font16)
 
         self.pushButton_Simpan = QtWidgets.QPushButton(self.centralwidget)
@@ -149,8 +149,8 @@ if __name__ == "__main__":
         "umur": 0,
         "gender": "",
         "lingkarKepala": 0,
-        "setengahDepa": 0,
         "lingkarLengan": 0,
+        "panjangUlna": 0,
         "suhu": 0,
     })
     ui.setupUi(MainWindow)
