@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
 
     def kembali(self, MainWindow):
         from awal import Ui_MainWindow
-        ui = Ui_MainWindow()
+        ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
         MainWindow.show()
 
