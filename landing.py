@@ -3,10 +3,18 @@ from PyQt5.QtGui import QPixmap, QFont, QIcon
 
 
 class Ui_MainWindow(object):
+    data = {
+        "umur": 1,
+        "gender": "",
+        "lingkarLengan": 0,
+        "lingkarKepala": 0,
+        "panjangUlna": 0,
+        "suhu": 0,
+    }
 
     def toNext(self, MainWindow):
         from awal import Ui_MainWindow
-        ui = Ui_MainWindow()
+        ui = Ui_MainWindow(self.data)
         ui.setupUi(MainWindow)
         MainWindow.show()
 
@@ -15,7 +23,7 @@ class Ui_MainWindow(object):
         sys.exit(MainWindow)
 
     def setupUi(self, MainWindow):
-        MainWindow.setWindowIcon(QIcon("assets/icon.png"))
+        MainWindow.setWindowIcon(QIcon("assets/icon.ico"))
         MainWindow.setFixedSize(640, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.bg = QtWidgets.QLabel(self.centralwidget)

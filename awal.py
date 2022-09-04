@@ -7,14 +7,10 @@ from PyQt5.QtGui import QPixmap, QFont
 
 
 class Ui_MainWindow(object):
-    data = {
-        "umur": 0,
-        "gender": "",
-        "lingkarLengan": 0,
-        "lingkarKepala": 0,
-        "panjangUlna": 0,
-        "suhu": 0,
-    }
+    data = {}
+
+    def __init__(self, data):
+        self.data = data
 
     def toNext(self, MainWindow):
         try:
@@ -25,7 +21,7 @@ class Ui_MainWindow(object):
             else:
                 raise ValueError
         except ValueError:
-            print("Gender Unknown")
+            self.label_error.setText("Gender Belum Dipilih")
         else:
             from menu import Ui_MainWindow
             ui = Ui_MainWindow(self.data)
@@ -43,7 +39,7 @@ class Ui_MainWindow(object):
         self.label_NilaiUmur.setText(f'{self.data["umur"]} Tahun')
 
     def Down(self):
-        if self.data["umur"] > 0:
+        if self.data["umur"] > 1:
             self.data["umur"] -= 1
             self.label_NilaiUmur.setText(f'{self.data["umur"]} Tahun')
 
@@ -58,7 +54,7 @@ class Ui_MainWindow(object):
         font16.setPixelSize(20)
 
         self.label_JenisKelamin = QtWidgets.QLabel(self.centralwidget)
-        self.label_JenisKelamin.setGeometry(QtCore.QRect(240, 230, 200, 16))
+        self.label_JenisKelamin.setGeometry(QtCore.QRect(240, 180, 200, 16))
         self.label_JenisKelamin.setText("Pilih Jenis Kelamin")
         self.label_JenisKelamin.setFont(font16)
 
@@ -68,16 +64,21 @@ class Ui_MainWindow(object):
         self.label_Umur.setFont(font16)
 
         self.radioButton_LakiLaki = QtWidgets.QRadioButton(self.centralwidget)
-        self.radioButton_LakiLaki.setGeometry(QtCore.QRect(180, 260, 120, 60))
+        self.radioButton_LakiLaki.setGeometry(QtCore.QRect(180, 200, 120, 60))
         self.radioButton_LakiLaki.setText("Laki-laki")
         self.radioButton_LakiLaki.setFont(font16)
         self.radioButton_Perempuan = QtWidgets.QRadioButton(self.centralwidget)
-        self.radioButton_Perempuan.setGeometry(QtCore.QRect(360, 260, 120, 60))
+        self.radioButton_Perempuan.setGeometry(QtCore.QRect(360, 200, 120, 60))
         self.radioButton_Perempuan.setText("Perempuan")
         self.radioButton_Perempuan.setFont(font16)
 
+        self.label_error = QtWidgets.QLabel(self.centralwidget)
+        self.label_error.setGeometry(QtCore.QRect(230, 270, 200, 30))
+        self.label_error.setFont(font16)
+        self.label_error.setStyleSheet("color: red")
+
         self.pushButton_UP = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_UP.setGeometry(QtCore.QRect(360, 140, 90, 36))
+        self.pushButton_UP.setGeometry(QtCore.QRect(360, 120, 90, 36))
         self.pushButton_UP.setText(">")
         self.pushButton_UP.clicked.connect(self.Up)
         self.pushButton_UP.setStyleSheet(
@@ -86,7 +87,7 @@ class Ui_MainWindow(object):
         )
 
         self.pushButton_DOWN = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_DOWN.setGeometry(QtCore.QRect(180, 140, 90, 36))
+        self.pushButton_DOWN.setGeometry(QtCore.QRect(180, 120, 90, 36))
         self.pushButton_DOWN.setText("<")
         self.pushButton_DOWN.clicked.connect(self.Down)
         self.pushButton_DOWN.setStyleSheet(
@@ -95,7 +96,7 @@ class Ui_MainWindow(object):
         )
 
         self.label_NilaiUmur = QtWidgets.QLabel(self.centralwidget)
-        self.label_NilaiUmur.setGeometry(QtCore.QRect(260, 100, 110, 20))
+        self.label_NilaiUmur.setGeometry(QtCore.QRect(260, 80, 110, 20))
         self.label_NilaiUmur.setText(f'{self.data["umur"]} Tahun')
         self.label_NilaiUmur.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_NilaiUmur.setFont(font16)
@@ -128,7 +129,14 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_MainWindow({
+        "umur": 1,
+        "gender": "",
+        "lingkarLengan": 0,
+        "lingkarKepala": 0,
+        "panjangUlna": 0,
+        "suhu": 0,
+    })
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())
